@@ -1,0 +1,1 @@
+# Initializes the authentication module
