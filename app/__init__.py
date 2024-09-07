@@ -1,13 +1,22 @@
+import os
 from flask import Flask
+from flask_pymongo import PyMongo
+from dotenv import load_dotenv
 
-# Function to create and configure the app
-def create_app():
-    app = Flask(__name__)
-    
-    # Import the routes after the app is created
-    from .routes import main_bp
-    
-    # Register blueprint
-    app.register_blueprint(main_bp)
+# Load environment variables from .env file
+load_dotenv()
 
-    return app
+# Initialize Flask app
+app = Flask(__name__)
+
+# Use environment variables for config
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
+
+# Setup Flask-PyMongo connection
+mongo = PyMongo(app)
+
+# Import the routes after app creation
+from .routes import main_bp
+app.register_blueprint(main_bp)
+

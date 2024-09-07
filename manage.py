@@ -1,7 +1,6 @@
-from app import create_app
-
-app = create_app()
+from app import app
+import secrets
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

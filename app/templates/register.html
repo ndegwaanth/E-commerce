@@ -18,7 +18,7 @@
     </div>
 
     <h1>Register</h1>
-    <form method="POST" action="">
+    <form method="POST" action="{{ url_for('main.add_user') }}">
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
@@ -48,7 +48,7 @@
                 <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.submit() }}</p>
+        <a href="/add_user"><p>{{ form.submit() }}</p></a>
     </form>
 </body>
 </html>
