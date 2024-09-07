@@ -1,0 +1,9 @@
+.image section img{
+    width: 50%;
+    height: 600px;
+}
+
+header .account-login {
+    display: flex;
+    flex-direction:row-reverse;
+}
