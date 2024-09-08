@@ -1,9 +1,97 @@
-.image section img{
-    width: 50%;
-    height: 600px;
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-header .account-login {
+/* Header styling */
+.header-container {
     display: flex;
-    flex-direction:row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.account-login p {
+    font-size: 16px;
+}
+
+/* Main container */
+.main-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left image section */
+.image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Right signup form section */
+.signup {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.signup form {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup p {
+    margin-bottom: 15px;
+}
+
+.error-msg {
+    color: red;
+    font-size: 12px;
+}
+
+/* Input and label styling */
+.signup label {
+    font-size: 14px;
+    color: #333;
+}
+
+.signup input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.signup input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.signup input[type="submit"]:hover {
+    background-color: #0056b3;
 }

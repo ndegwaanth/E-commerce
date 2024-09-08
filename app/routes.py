@@ -31,11 +31,6 @@ def add_user():
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
-
-        print('username:', username)
-        print('email:', email)
-        print('confirm password:', confirm_password)
-
         mongo.db.user.insert_one({'Username': username, 'Email': email, 'Password': password, 'Comfirm Password': confirm_password})
 
         return redirect(url_for('main.home'))
