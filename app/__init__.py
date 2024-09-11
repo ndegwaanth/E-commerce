@@ -19,4 +19,3 @@ mongo = PyMongo(app)
 # Import the routes after app creation
 from .routes import main_bp
 app.register_blueprint(main_bp)
-

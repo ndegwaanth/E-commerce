@@ -8,8 +8,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    profile_info = db.Column(db.String(200), nullable=True)  # Profile information
-    
+    profile_info = db.Column(db.String(200), nullable=True)      
     def set_password(self, password):
         """Hashes the password and stores it."""
         self.password_hash = generate_password_hash(password)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>signup</title>
     <link rel="stylesheet" href="../static/css/register.css">
 </head>
 <body>
@@ -19,9 +19,11 @@
     </header>
 
     <div class="main-container">
-        <section class="image">
-            <img src="../static/images/Registar-page.jpg" alt="Signup Image">
-        </section>
+        <div class="image">
+            <section>
+                <img src="../static/images/Registar-page.jpg" alt="">
+            </section>
+        </div>
 
         <div class="signup">
             <form method="POST" action="{{ url_for('main.add_user') }}">
@@ -30,31 +32,31 @@
                     {{ form.username.label }}<br>
                     {{ form.username(size=32) }}<br>
                     {% for error in form.username.errors %}
-                        <span class="error-msg">[{{ error }}]</span>
+                        <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
                 <p>
                     {{ form.email.label }}<br>
                     {{ form.email(size=32) }}<br>
                     {% for error in form.email.errors %}
-                        <span class="error-msg">[{{ error }}]</span>
+                        <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
                 <p>
                     {{ form.password.label }}<br>
                     {{ form.password(size=32) }}<br>
                     {% for error in form.password.errors %}
-                        <span class="error-msg">[{{ error }}]</span>
+                        <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
                 <p>
                     {{ form.confirm_password.label }}<br>
                     {{ form.confirm_password(size=32) }}<br>
                     {% for error in form.confirm_password.errors %}
-                        <span class="error-msg">[{{ error }}]</span>
+                        <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </p>
-                <p>{{ form.submit() }}</p>
+                <a href="/add_user"><p>{{ form.submit() }}</p></a>
             </form>
         </div>
     </div>
