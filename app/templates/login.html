@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="query-info">
+                <p><a href="#"><u>Tell us what you think</u></a></p>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <h1>Hello</h1>
+        <p>Sign in to Tony_ecommerce or <a href="/register"><u>create an account</u></a></p>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group" id="email">
+                {{ form.email.label }}<br>
+                {{ form.email(size=32) }}<br>
+                {% for error in form.email.errors %}
+                    <span class="error">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <div class="form-group" id="password">
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}<br>
+                {% for error in form.password.errors %}
+                    <span class="error">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            
+            
+            <div class="form-group">
+                <a href="/home" target="_blank">{{ form.submit(class="btn-submit") }}</a>
+            </div>
+
+            <div class="or-separator">
+                <span>or</span>
+            </div>
+
+            <div class="facebook-login">
+                    <button class="btn-facebook"><h3>Continue with Facebook</h3></button>
+            </div>
+
+            <div class="google-login">
+                <button class="btn-google"><h3>Continue with Google</h3></button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
