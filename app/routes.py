@@ -1,11 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from .forms import RegistrationForm, LoginForm
-
+from gridfs import GridFS
+import os
 
 main_bp = Blueprint('main', __name__)
-
 
 @main_bp.route('/')
 def index():
@@ -54,7 +54,6 @@ def add_user():
 def login():
     form = LoginForm()
 
-    # Check if the request method is POST and the form has been validated
     if form.validate_on_submit() and request.method == 'POST':
         from flask_bcrypt import Bcrypt
         from . import mongo
@@ -67,17 +66,77 @@ def login():
         # password = form.password.data
         password = request.form.get('password')
 
-        # Fetch user details from the database (assuming you're using MongoDB)
         user = mongo.db.users.find_one({'Email': email})
 
-        # Check if user exists and if password matches
         if user and bcrypt.check_password_hash(user['Password'], password):
-            # Login successful - redirect to the home page
             login_user(user)
             return redirect(url_for('main.home'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
             return redirect(url_for('main.login'))  # Return to login page on failure
 
-    # Render the login template for GET request or if validation fails
     return render_template('login.html', form=form)
+
+@main_bp.route('/upload-images')
+def upload_images():
+    from . import mongo
+    # Get the path to the static/images directory
+    images_path = os.path.join(current_app.root_path, 'static/images')
+    
+    # Initialize GridFS
+    fs = GridFS(mongo.db)
+
+    # Iterate over all directories and files in the images_path
+    for root, dirs, files in os.walk(images_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            file_name = os.path.relpath(file_path, images_path)
+            folder_name = os.path.basename(root)  # Get the folder name
+
+            # Check if file already exists in GridFS
+            existing_file = fs.find_one({'filename': file_name})
+            if existing_file:
+                print(f"File '{file_name}' already exists in MongoDB.")
+                continue  # Skip uploading this file
+
+            # Open and upload the file to GridFS with folder metadata
+            with open(file_path, 'rb') as f:
+                fs.put(f, filename=file_name, metadata={'folder': folder_name})
+
+    flash('All images have been uploaded successfully.')
+    return redirect(url_for('main.index'))
+
+@main_bp.route('/images/<folder_name>')
+def get_images(folder_name):
+    from . import mongo
+    fs = GridFS(mongo.db)
+
+    # Get pagination parameters
+    page = int(request.args.get('page', 1))  # Default to page 1
+    per_page = int(request.args.get('per_page', 20))  # Default to 10 items per page
+
+    # Calculate the skip and limit values
+    skip = (page - 1) * per_page
+    limit = per_page
+
+    # Find images by folder metadata
+    total_files = mongo.db.fs.files.count_documents({'metadata.folder': folder_name})  # Get total number of files
+    files = fs.find({'metadata.folder': folder_name}).skip(skip).limit(limit)
+
+    image_list = [{'filename': file.filename, 'url': url_for('main.static_image', filename=file.filename)} for file in files]
+
+    # Calculate total pages
+    total_pages = (total_files + per_page - 1) // per_page  # Ceiling division for total pages
+
+    return render_template('product_list.html', images=image_list, folder_name=folder_name, page=page, total_pages=total_pages)
+
+@main_bp.route('/static/images/<filename>')
+def static_image(filename):
+    from . import mongo
+    # Serve image files from GridFS
+    fs = GridFS(mongo.db)
+    file = fs.find_one({'filename': filename})
+    if file:
+        return send_file(file, mimetype='image/jpeg')
+    print('File not found: {filename}')
+    return "File not found", 404
