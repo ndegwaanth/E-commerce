@@ -1,0 +1,20 @@
+/* Styling for product detail page */
+.product-detail {
+    text-align: center;
+    padding: 20px;
+}
+
+.product-detail img {
+    max-width: 300px;
+    height: auto;
+}
+
+.product-detail h2 {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.product-detail p {
+    font-size: 18px;
+    color: #555;
+}

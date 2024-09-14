@@ -1,1 +1,0 @@
-# Initializes the product module

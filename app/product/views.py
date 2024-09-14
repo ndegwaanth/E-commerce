@@ -1,1 +1,0 @@
-# Product routes (CRUD operations)

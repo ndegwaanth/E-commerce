@@ -9,7 +9,7 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('homepage.html')
 
 @main_bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -21,10 +21,17 @@ def register():
 
 @main_bp.route('/home')
 def home():
-    return 'Home Page'
+    images = []  # Replace with actual image data
+    folder_name = 'default_folder'  # Replace with actual folder name
+    page = 1
+    total_pages = 1
+
+    return render_template('product_list.html', images=images, folder_name=folder_name, page=page, total_pages=total_pages)
+
 
 @main_bp.route('/add_user', methods=['POST'])
 def add_user():
+    
     if request.method == 'POST':
         from flask_bcrypt import Bcrypt
         bcrypt = Bcrypt()
@@ -97,7 +104,7 @@ def upload_images():
             existing_file = fs.find_one({'filename': file_name})
             if existing_file:
                 print(f"File '{file_name}' already exists in MongoDB.")
-                continue  # Skip uploading this file
+                continue
 
             # Open and upload the file to GridFS with folder metadata
             with open(file_path, 'rb') as f:
@@ -111,11 +118,9 @@ def get_images(folder_name):
     from . import mongo
     fs = GridFS(mongo.db)
 
-    # Get pagination parameters
-    page = int(request.args.get('page', 1))  # Default to page 1
-    per_page = int(request.args.get('per_page', 20))  # Default to 10 items per page
+    page = int(request.args.get('page', 1))
+    per_page = int(request.args.get('per_page', 20))
 
-    # Calculate the skip and limit values
     skip = (page - 1) * per_page
     limit = per_page
 
@@ -126,9 +131,10 @@ def get_images(folder_name):
     image_list = [{'filename': file.filename, 'url': url_for('main.static_image', filename=file.filename)} for file in files]
 
     # Calculate total pages
-    total_pages = (total_files + per_page - 1) // per_page  # Ceiling division for total pages
+    total_pages = (total_files + per_page - 1) // per_page
 
     return render_template('product_list.html', images=image_list, folder_name=folder_name, page=page, total_pages=total_pages)
+
 
 @main_bp.route('/static/images/<filename>')
 def static_image(filename):
@@ -139,4 +145,27 @@ def static_image(filename):
     if file:
         return send_file(file, mimetype='image/jpeg')
     print('File not found: {filename}')
+    return "File not found", 404@main_bp.route('/product/<filename>')
+
+@main_bp.route('/product/<filename>')
+def product_detail(filename):
+    from . import mongo
+    fs = GridFS(mongo.db)
+
+    # Find the specific file by its filename
+    file = fs.find_one({'filename': filename})
+
+    if file:
+        # Extract the file details
+        image = {
+            'filename': file.filename,
+            'url': url_for('main.static_image', filename=file.filename),
+            'description': file.metadata.get('description', 'No description available')
+        }
+        # Get the folder name and current page for the back link
+        folder_name = file.metadata.get('folder', 'default_folder')
+        page = int(request.args.get('page', 1))  # Default to page 1 if not provided
+
+        return render_template('product_detail.html', image=image, folder_name=folder_name, page=page)
+    
     return "File not found", 404

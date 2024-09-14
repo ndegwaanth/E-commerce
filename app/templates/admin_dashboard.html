@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+
+    <!-- Section for Viewing Uploaded Images -->
+    <h2>Uploaded Images</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Filename</th>
+                <th>Description</th>
+                <th>Folder</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image in images %}
+            <tr>
+                <td><img src="{{ image.url }}" alt="{{ image.filename }}" style="width: 100px;"></td>
+                <td>{{ image.filename }}</td>
+                <td>{{ image.description }}</td>
+                <td>{{ image.folder }}</td>
+                <td>
+                    <!-- Actions (e.g., Delete) can be added here -->
+                    <a href="{{ url_for('admin.delete_image', filename=image.filename) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Section for Uploading New Images -->
+    <h2>Upload New Image</h2>
+    <form action="{{ url_for('main.upload_images') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <input type="text" name="description" placeholder="Enter image description" required>
+        <button type="submit">Upload Image</button>
+    </form>
+
+    <!-- Section for Managing Users -->
+    <h2>Manage Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <!-- Actions (e.g., Delete) can be added here -->
+                    <a href="{{ url_for('admin.delete_user', user_id=user._id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

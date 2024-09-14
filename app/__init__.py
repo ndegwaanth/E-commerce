@@ -18,4 +18,10 @@ mongo = PyMongo(app)
 fs = GridFS(mongo.db)
 
 from .routes import main_bp
+# from .product import product_bp
+from app.admin import admin_bp
+
 app.register_blueprint(main_bp)
+# app.register_blueprint(product_bp, url_prefix='/product')
+app.register_blueprint(admin_bp, url_prefix='/admin')
+

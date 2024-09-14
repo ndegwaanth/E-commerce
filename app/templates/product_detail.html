@@ -1,11 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product_detail.css') }}">
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Product Detail</h1>
+    <div class="product-detail">
+        <img src="{{ image.url }}" alt="{{ image.filename }}">
+        <h2>{{ image.filename }}</h2>
+        <p>{{ image.description }}</p>
+        <!-- Add any additional product details here -->
+
+        <!-- Back to Product List -->
+        <a href="{{ url_for('main.get_images', folder_name=folder_name, page=page) }}">Back to Product List</a>
+    </div>
 </body>
 </html>
