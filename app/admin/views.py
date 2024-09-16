@@ -16,7 +16,7 @@ def admin_dashboard():
         images.append({
             'filename': file.filename,
             'description': file.metadata.get('description', 'No description'),
-            'folder': file.metadata.get('folder', 'Unknown'),
+            'folder': file.metadata.get('folder', 'products'),
             'url': url_for('admin.get_image', filename=file.filename)
         })
 

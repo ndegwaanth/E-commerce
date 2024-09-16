@@ -49,6 +49,7 @@ p {
 .pagination {
     text-align: center;
     margin: 20px 0;
+    border-radius: 7px 7px;
 }
 
 .pagination a {
@@ -78,7 +79,7 @@ p {
 
 .icon-container {
     position: relative;
-    margin-left: 400px;
+    margin-left: 750px;
 }
 
 /* Initially hide the dropdown menu */

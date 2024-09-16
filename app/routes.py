@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, session
 from flask import render_template, redirect, url_for, request, flash, current_app, send_file
 from flask_login import login_user, login_required, logout_user
 from .forms import RegistrationForm, LoginForm
@@ -7,6 +7,7 @@ import os
 from . import mongo
 from app import mongo, bcrypt
 from app.models import User
+from bson.objectid import ObjectId
 
 
 main_bp = Blueprint('main', __name__)
@@ -177,3 +178,53 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('main.login'))
+
+
+# Route to handle adding items to the cart
+@main_bp.route('/add_to_cart/<product_id>', methods=['POST'])
+@login_required
+def add_to_cart(product_id):
+    product = fs.find_one({'_id': ObjectId(product_id)})
+    
+    if not product:
+        flash('Product not found.', 'danger')
+        return redirect(url_for('main.get_images'))
+
+    cart = session.get('cart', [])  # Get the current cart from the session
+    cart.append({
+        'product_id': str(product['_id']),
+        'name': product['name'],
+        'price': product['price'],
+        'quantity': int(request.form.get('quantity', 1))  # Add quantity from form
+    })
+
+    session['cart'] = cart
+    flash(f"{product['name']} added to cart!", 'success')
+    return redirect(url_for('main.get_images'))
+
+
+# Route to view cart items
+@main_bp.route('/cart')
+@login_required
+def view_cart():
+    cart = session.get('cart', [])
+    total_price = sum(item['price'] * item['quantity'] for item in cart)
+
+    return render_template('cart.html', cart_items=cart, total_amount=total_price)
+
+# Route to clear the cart
+@main_bp.route('/clear_cart')
+@login_required
+def clear_cart():
+    session.pop('cart', None)
+    flash('Cart cleared!', 'success')
+    return redirect(url_for('main.view_cart'))
+
+@main_bp.route('/remove_from_cart/<product_id>', methods=['POST'])
+@login_required
+def remove_from_cart(product_id):
+    cart = session.get('cart', [])
+    cart = [item for item in cart if item['product_id'] != product_id]  # Remove item by product_id
+    session['cart'] = cart
+    flash('Item removed from cart!', 'success')
+    return redirect(url_for('main.view_cart'))

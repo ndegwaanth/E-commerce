@@ -18,8 +18,3 @@
     font-size: 18px;
     color: #555;
 }
-.icon i {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
