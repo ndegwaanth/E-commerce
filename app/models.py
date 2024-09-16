@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -17,12 +18,14 @@ class User(db.Model):
         """Checks the hashed password against the provided one."""
         return check_password_hash(self.password_hash, password)
 
-from app import db
-
-class Product(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text, nullable=False)
-    price = db.Column(db.Float, nullable=False)
-    stock = db.Column(db.Integer, nullable=False)
-    image = db.Column(db.String(100), nullable=True)
+class User(UserMixin):
+    def __init__(self, user_dict):
+        # The user_dict is the dictionary returned from MongoDB for the user
+        self.id = str(user_dict['_id'])  # User ID stored as string
+        self.username = user_dict['Username']
+        self.email = user_dict['Email']
+        self.password_hash = user_dict['Password']  # Make sure this is a hashed password
+    
+    # Flask-Login requires this method to return a string that uniquely identifies this user
+    def get_id(self):
+        return self.id

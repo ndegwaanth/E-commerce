@@ -1,0 +1,288 @@
+[
+  {
+    "id": 1,
+    "name": "Floral Print Crop Top",
+    "description": "A cute floral print crop top with a square neckline and puff sleeves.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "White with Floral Print",
+    "price": 20.99,
+    "material": "100% Cotton",
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Ribbed Knit Crop Top",
+    "description": "A slim-fit ribbed knit crop top with a scoop neck, ideal for casual wear.",
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Black",
+    "price": 15.99,
+    "material": "95% Cotton, 5% Spandex",
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Off-Shoulder Crop Top",
+    "description": "An off-shoulder crop top with elasticized neckline and ruffled hem, perfect for summer outings.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Light Blue",
+    "price": 18.99,
+    "material": "Polyester",
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "name": "Tie-Front Wrap Crop Top",
+    "description": "Wrap-style crop top with a tie front and short sleeves, versatile for any occasion.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Olive Green",
+    "price": 22.99,
+    "material": "Linen Blend",
+    "inStock": false
+  },
+  {
+    "id": 5,
+    "name": "Mesh Long-Sleeve Crop Top",
+    "description": "A stylish sheer mesh long-sleeve crop top, perfect for layering.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Black",
+    "price": 25.99,
+    "material": "Mesh Fabric",
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "name": "Graphic Print Crop Top",
+    "description": "Graphic print crop top with bold design, ideal for casual street style.",
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "White",
+    "price": 19.99,
+    "material": "100% Cotton",
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "name": "Bandeau Crop Top",
+    "description": "A simple yet chic strapless bandeau crop top, available in multiple colors.",
+    "size": [
+      "XS",
+      "S",
+      "M"
+    ],
+    "color": "Red",
+    "price": 12.99,
+    "material": "95% Cotton, 5% Spandex",
+    "inStock": true
+  },
+  {
+    "id": 8,
+    "name": "Strappy Back Crop Top",
+    "description": "Crop top with delicate strappy back detailing and a halter neckline.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Navy Blue",
+    "price": 21.99,
+    "material": "Polyester",
+    "inStock": false
+  },
+  {
+    "id": 9,
+    "name": "Plaid Flannel Crop Top",
+    "description": "Plaid flannel crop top with button-up front, ideal for layering or casual wear.",
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Red Plaid",
+    "price": 24.99,
+    "material": "100% Cotton",
+    "inStock": true
+  },
+  {
+    "id": 10,
+    "name": "Lace Trim Crop Top",
+    "description": "A feminine crop top with lace trim and adjustable straps for a perfect fit.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Pink",
+    "price": 17.99,
+    "material": "Satin",
+    "inStock": true
+  },
+  {
+    "id": 11,
+    "name": "Basic Ribbed Tank Crop Top",
+    "description": "A versatile ribbed tank crop top, perfect for layering or wearing solo.",
+    "size": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Grey",
+    "price": 14.99,
+    "material": "Cotton Blend",
+    "inStock": true
+  },
+  {
+    "id": 12,
+    "name": "One-Shoulder Crop Top",
+    "description": "One-shoulder crop top with a body-hugging fit, great for casual or night-out looks.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Black",
+    "price": 19.99,
+    "material": "95% Cotton, 5% Spandex",
+    "inStock": true
+  },
+  {
+    "id": 13,
+    "name": "Ruffle Sleeve Crop Top",
+    "description": "Lightweight crop top with ruffle sleeves, perfect for adding a flirty touch to any outfit.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Yellow",
+    "price": 23.99,
+    "material": "Chiffon",
+    "inStock": true
+  },
+  {
+    "id": 14,
+    "name": "Tie-Dye Crop Top",
+    "description": "Tie-dye crop top with vibrant colors and a relaxed fit for a trendy look.",
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "Tie-Dye",
+    "price": 16.99,
+    "material": "Cotton Blend",
+    "inStock": true
+  },
+  {
+    "id": 15,
+    "name": "Velvet Halter Crop Top",
+    "description": "A luxurious velvet halter crop top, perfect for evening events or parties.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Burgundy",
+    "price": 26.99,
+    "material": "Velvet",
+    "inStock": false
+  },
+  {
+    "id": 16,
+    "name": "Button-Front Crop Top",
+    "description": "Casual button-front crop top with a relaxed fit and short sleeves.",
+    "size": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "color": "White",
+    "price": 22.49,
+    "material": "Linen",
+    "inStock": true
+  },
+  {
+    "id": 17,
+    "name": "Sequin Crop Top",
+    "description": "Shiny sequin crop top perfect for parties or night-outs, featuring spaghetti straps.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Silver",
+    "price": 29.99,
+    "material": "Polyester",
+    "inStock": false
+  },
+  {
+    "id": 18,
+    "name": "Wrap Tie-Front Crop Top",
+    "description": "Elegant wrap tie-front crop top with a deep V-neckline and long sleeves.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Wine Red",
+    "price": 27.99,
+    "material": "Polyester Blend",
+    "inStock": true
+  },
+  {
+    "id": 19,
+    "name": "Athletic Sports Crop Top",
+    "description": "A sporty crop top with moisture-wicking fabric, perfect for workouts.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "Black",
+    "price": 24.99,
+    "material": "Nylon, Spandex",
+    "inStock": true
+  },
+  {
+    "id": 20,
+    "name": "Embroidered Crop Top",
+    "description": "Boho-inspired crop top with delicate embroidery and balloon sleeves.",
+    "size": [
+      "S",
+      "M",
+      "L"
+    ],
+    "color": "White",
+    "price": 28.99,
+    "material": "Cotton",
+    "inStock": true
+  }
+]

@@ -1,97 +1,87 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask import Blueprint, render_template, redirect, url_for, request, flash, current_app
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask import Blueprint, request
+from flask import render_template, redirect, url_for, request, flash, current_app, send_file
+from flask_login import login_user, login_required, logout_user
 from .forms import RegistrationForm, LoginForm
 from gridfs import GridFS
 import os
+from . import mongo
+from app import mongo, bcrypt
+from app.models import User
+
 
 main_bp = Blueprint('main', __name__)
+fs = GridFS(mongo.db)
 
 @main_bp.route('/')
 def index():
     return render_template('homepage.html')
 
+
 @main_bp.route('/register', methods=['GET', 'POST'])
 def register():
+    from .models import User
+
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('main.home'))
+        if form.password.data == form.confirm_password.data:
+            username = form.username.data
+            email = form.email.data
+            password = form.password.data
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf8')
+
+            # Insert user into the database
+            mongo.db.users.insert_one({'Username': username, 'Email': email, 'Password': hashed_password})
+            
+            # Create a user object and log them in
+            user_dict = mongo.db.users.find_one({'Email': email})
+            user = User(user_dict)
+            login_user(user)
+
+            flash(f'Account created for {username}!', 'success')
+            return redirect(url_for('main.get_images', folder_name='products'))
+        else:
+            flash('Passwords do not match!', 'danger')
     return render_template('register.html', form=form)
 
-@main_bp.route('/home')
+
+@main_bp.route('/home', methods=['GET'])
 def home():
-    images = []  # Replace with actual image data
-    folder_name = 'default_folder'  # Replace with actual folder name
+    images = ['url_for(main.get_images)']
+    folder_name = 'products'
     page = 1
-    total_pages = 1
+    total_pages = 7
 
     return render_template('product_list.html', images=images, folder_name=folder_name, page=page, total_pages=total_pages)
 
-
-@main_bp.route('/add_user', methods=['POST'])
-def add_user():
-    
-    if request.method == 'POST':
-        from flask_bcrypt import Bcrypt
-        bcrypt = Bcrypt()
-        from . import mongo
-
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
-
-        confirm_password = request.form.get('confirm_password')
-
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf8')
-        hashed_confirm_password = bcrypt.generate_password_hash(confirm_password).decode('utf8')
-
-        mongo.db.users.insert_one({
-            'Username': username, 
-            'Email': email, 
-            'Password': hashed_password,
-            'Confirm Password': hashed_confirm_password
-        })
-        return redirect(url_for('main.home'))
-
-    return render_template('register.html')
-
-
-@main_bp.route('/login', methods=['POST', 'GET'])
+@main_bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        user_dict = mongo.db.users.find_one({'Email': email})
 
-    if form.validate_on_submit() and request.method == 'POST':
-        from flask_bcrypt import Bcrypt
-        from . import mongo
-
-        bcrypt = Bcrypt()
-
-        # Retrieve form data
-        # email = form.email.data
-        email = request.form.get('email')
-        # password = form.password.data
-        password = request.form.get('password')
-
-        user = mongo.db.users.find_one({'Email': email})
-
-        if user and bcrypt.check_password_hash(user['Password'], password):
-            login_user(user)
-            return redirect(url_for('main.home'))
+        if user_dict:
+            # Check password hash
+            if bcrypt.check_password_hash(user_dict['Password'], password):
+                user = User(user_dict)
+                login_user(user)
+                return redirect(url_for('main.get_images', folder_name='products'))
+            else:
+                return 'Incorrect password. Please try again.', 'danger'
         else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
-            return redirect(url_for('main.login'))  # Return to login page on failure
+            return 'User does not exist. Please check email.', 'danger'
+    else:
+        return render_template('login.html', form=form)
+    
+    return 'you are mad'
 
-    return render_template('login.html', form=form)
+
 
 @main_bp.route('/upload-images')
 def upload_images():
-    from . import mongo
     # Get the path to the static/images directory
     images_path = os.path.join(current_app.root_path, 'static/images')
-    
-    # Initialize GridFS
-    fs = GridFS(mongo.db)
 
     # Iterate over all directories and files in the images_path
     for root, dirs, files in os.walk(images_path):
@@ -113,21 +103,25 @@ def upload_images():
     flash('All images have been uploaded successfully.')
     return redirect(url_for('main.index'))
 
-@main_bp.route('/images/<folder_name>')
-def get_images(folder_name):
-    from . import mongo
-    fs = GridFS(mongo.db)
 
+@main_bp.route('/images/<folder_name>', methods=['GET'])
+def get_images(folder_name):
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 20))
+    search_query = request.args.get('search', '')
 
     skip = (page - 1) * per_page
     limit = per_page
 
-    # Find images by folder metadata
-    total_files = mongo.db.fs.files.count_documents({'metadata.folder': folder_name})  # Get total number of files
-    files = fs.find({'metadata.folder': folder_name}).skip(skip).limit(limit)
+    # Build the query to search images
+    query = {'metadata.folder': folder_name}
+    if search_query:
+        query['filename'] = {'$regex': search_query, '$options': 'i'}  # Case-insensitive search
 
+    # Find images based on the query
+    total_files = mongo.db.fs.files.count_documents(query)  # Get total number of files
+    files = fs.find(query).skip(skip).limit(limit)
+    #files = fs.find(query).skip((page - 1) * per_page).limit(per_page)
     image_list = [{'filename': file.filename, 'url': url_for('main.static_image', filename=file.filename)} for file in files]
 
     # Calculate total pages
@@ -138,20 +132,15 @@ def get_images(folder_name):
 
 @main_bp.route('/static/images/<filename>')
 def static_image(filename):
-    from . import mongo
-    # Serve image files from GridFS
-    fs = GridFS(mongo.db)
+    
     file = fs.find_one({'filename': filename})
     if file:
         return send_file(file, mimetype='image/jpeg')
-    print('File not found: {filename}')
-    return "File not found", 404@main_bp.route('/product/<filename>')
+    print(f'File not found: {filename}')
+    return redirect(url_for('main.home'))
 
-@main_bp.route('/product/<filename>')
+@main_bp.route('/images/<filename>')
 def product_detail(filename):
-    from . import mongo
-    fs = GridFS(mongo.db)
-
     # Find the specific file by its filename
     file = fs.find_one({'filename': filename})
 
@@ -169,3 +158,22 @@ def product_detail(filename):
         return render_template('product_detail.html', image=image, folder_name=folder_name, page=page)
     
     return "File not found", 404
+
+
+@main_bp.route('/facebook-login')
+def facebook_login():
+    # Implement Facebook OAuth login
+    pass
+
+@main_bp.route('/google-login')
+def google_login():
+    # Implement Google OAuth login
+    pass
+
+
+@main_bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('main.login'))

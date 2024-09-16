@@ -18,7 +18,7 @@
     <div class="main-container">
         <h1>Hello</h1>
         <p>Sign in to Tony_ecommerce or <a href="/register"><u>create an account</u></a></p>
-        <form action="" method="post">
+        <form action="{{ url_for('main.login') }}" method="post">
             {{ form.hidden_tag() }}
             <div class="form-group" id="email">
                 {{ form.email.label }}<br>
@@ -37,7 +37,7 @@
             
             
             <div class="form-group">
-                <a href="{{ url_for('main.home') }}" target="_self">{{ form.submit(class="btn-submit") }}</a>
+                {{ form.submit(class="btn-submit") }}
             </div>
 
             <div class="or-separator">
@@ -51,6 +51,7 @@
             <div class="google-login">
                 <button class="btn-google"><h3>Continue with Google</h3></button>
             </div>
+
         </form>
     </div>
 </body>

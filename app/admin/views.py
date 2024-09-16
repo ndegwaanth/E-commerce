@@ -5,6 +5,7 @@ from app import mongo
 from bson.objectid import ObjectId
 from gridfs import GridFS
 
+
 @admin_bp.route('/dashboard')
 def admin_dashboard():
     fs = GridFS(mongo.db)
