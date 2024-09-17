@@ -71,7 +71,7 @@ def login():
             else:
                 return 'Incorrect password. Please try again.', 'danger'
         else:
-            return 'User does not exist. Please check email.', 'danger'
+            return redirect(url_for('main.register'))
     else:
         return render_template('login.html', form=form)
     
@@ -106,6 +106,7 @@ def upload_images():
 
 
 @main_bp.route('/images/<folder_name>', methods=['GET'])
+@login_required
 def get_images(folder_name):
     page = int(request.args.get('page', 1))
     per_page = int(request.args.get('per_page', 20))
@@ -140,21 +141,19 @@ def static_image(filename):
     print(f'File not found: {filename}')
     return redirect(url_for('main.home'))
 
-@main_bp.route('/images/<filename>')
+@main_bp.route('/images/<filename>', methods=['GET'])
+@login_required
 def product_detail(filename):
-    # Find the specific file by its filename
     file = fs.find_one({'filename': filename})
 
     if file:
-        # Extract the file details
         image = {
             'filename': file.filename,
             'url': url_for('main.static_image', filename=file.filename),
             'description': file.metadata.get('description', 'No description available')
         }
-        # Get the folder name and current page for the back link
         folder_name = file.metadata.get('folder', 'default_folder')
-        page = int(request.args.get('page', 1))  # Default to page 1 if not provided
+        page = int(request.args.get('page', 1))
 
         return render_template('product_detail.html', image=image, folder_name=folder_name, page=page)
     

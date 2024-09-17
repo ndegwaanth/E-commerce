@@ -92,7 +92,7 @@ section {
     flex-wrap: wrap;
 }
 
-section img {
+img {
     margin: 10px;
     width: 22%; /* Use percentage-based width */
     height: auto;
@@ -108,7 +108,7 @@ section img:hover {
 
 /* Styling for individual product sections */
 #bags, .men-trouser, .crop-tops {
-    background-color: #fff;
+    background-color: #6b6868;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

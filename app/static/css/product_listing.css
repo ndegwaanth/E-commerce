@@ -50,6 +50,7 @@ p {
     text-align: center;
     margin: 20px 0;
     border-radius: 7px 7px;
+    justify-content: center;
 }
 
 .pagination a {
@@ -118,4 +119,12 @@ p {
 }
 #search {
     width: 300px;
+}
+.cart-icon {
+    font-size: 1.5rem;
+    color: gold;
+    cursor: pointer;
+}
+.cart-icon:hover {
+    color: orange;
 }

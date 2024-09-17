@@ -4,14 +4,45 @@
     <meta charset="utf-8">
     <title>Product Detail</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/product_detail.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Product Detail</h1>
-    <div class="product-detail">
-        <img src="{{ image.url }}" alt="{{ image.filename }}">
-        <h2>{{ image.filename }}</h2>
-        <p>{{ image.description }}</p>
+    <header>
+        <div class="header-container">
+            <form>
+                <div class="search-container">
+                    <input type="text" name="search" id="search" placeholder="Search for products">
+                </div>
+            </form>
+            <div class="cart-icon">
+                <a href="{{ url_for('main.view_cart') }}">
+                    <i class="fa fa-shopping-cart"></i> Cart ({{ session.get('cart', [])|length }})
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Product Detail</h1>
+
+        {% if image %}
+        <div class="product-detail">
+            <img src="{{ image.url }}" alt="{{ image.filename }}">
+            <div class="product-info">
+                <h2>{{ image.filename }}</h2>
+                <p>{{ image.description }}</p>
+                <form action="{{ url_for('main.add_to_cart', product_id=image.filename) }}" method="POST">
+                    {{ csrf_token() }}
+                    <input type="number" name="quantity" value="1" min="1" required>
+                    <button type="submit" style="background-color: gold;">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <p>Product not found.</p>
+        {% endif %}
+
         <a href="{{ url_for('main.get_images', folder_name=folder_name, page=page) }}">Back to Product List</a>
-    </div>
+    </main>
 </body>
 </html>
