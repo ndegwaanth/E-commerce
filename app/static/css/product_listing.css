@@ -2,7 +2,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #d3d3d3;
     margin: 0;
     padding: 0;
     color: #333;
@@ -127,4 +127,62 @@ p {
 }
 .cart-icon:hover {
     color: orange;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(135deg, #142230, #e9ecef);
+    color: #333;
+    padding: 40px 0;
+}
+
+footer .footer-logo img {
+    max-width: 150px;
+}
+
+footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+footer ul {
+    padding: 0;
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #0056b3;
+}
+
+.footer-social-icons {
+    margin-top: 20px;
+}
+
+.footer-social-icons a {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    color: #007bff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.875rem;
+    color: #666;
 }

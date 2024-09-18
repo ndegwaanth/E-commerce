@@ -1,5 +1,4 @@
 from app import app
-import secrets
 
 
 if __name__ == '__main__':

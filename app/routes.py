@@ -8,6 +8,7 @@ from . import mongo
 from app import mongo, bcrypt
 from app.models import User
 from bson.objectid import ObjectId
+import json
 
 
 main_bp = Blueprint('main', __name__)
@@ -97,13 +98,45 @@ def upload_images():
                 print(f"File '{file_name}' already exists in MongoDB.")
                 continue
 
-            # Open and upload the file to GridFS with folder metadata
+            # Open and upload the file to GridFS with folder metadata and other attributes
             with open(file_path, 'rb') as f:
-                fs.put(f, filename=file_name, metadata={'folder': folder_name})
+                fs.put(f, filename=file_name, metadata={
+                    'folder': folder_name,
+                    'description': 'Default description for this product',
+                    'name': 'Default Product Name',
+                    'price': 100,  # Default price
+                    'inStock': True  # Default stock status
+                })
 
     flash('All images have been uploaded successfully.')
     return redirect(url_for('main.index'))
 
+
+# @main_bp.route('/images/<folder_name>', methods=['GET'])
+# @login_required
+# def get_images(folder_name):
+#     page = int(request.args.get('page', 1))
+#     per_page = int(request.args.get('per_page', 20))
+#     search_query = request.args.get('search', '')
+
+#     skip = (page - 1) * per_page
+#     limit = per_page
+
+#     # Build the query to search images
+#     query = {'metadata.folder': folder_name}
+#     if search_query:
+#         query['filename'] = {'$regex': search_query, '$options': 'i'}  # Case-insensitive search
+
+#     # Find images based on the query
+#     total_files = mongo.db.fs.files.count_documents(query)  # Get total number of files
+#     files = fs.find(query).skip(skip).limit(limit)
+#     #files = fs.find(query).skip((page - 1) * per_page).limit(per_page)
+#     image_list = [{'filename': file.filename, 'url': url_for('main.static_image', filename=file.filename)} for file in files]
+
+#     # Calculate total pages
+#     total_pages = (total_files + per_page - 1) // per_page
+
+#     return render_template('product_list.html', images=image_list, folder_name=folder_name, page=page, total_pages=total_pages)
 
 @main_bp.route('/images/<folder_name>', methods=['GET'])
 @login_required
@@ -121,10 +154,31 @@ def get_images(folder_name):
         query['filename'] = {'$regex': search_query, '$options': 'i'}  # Case-insensitive search
 
     # Find images based on the query
-    total_files = mongo.db.fs.files.count_documents(query)  # Get total number of files
+    total_files = mongo.db.fs.files.count_documents(query)
     files = fs.find(query).skip(skip).limit(limit)
-    #files = fs.find(query).skip((page - 1) * per_page).limit(per_page)
-    image_list = [{'filename': file.filename, 'url': url_for('main.static_image', filename=file.filename)} for file in files]
+
+    image_list = []
+    for file in files:
+        # Access the description field if it exists
+        description_data = getattr(file, 'description', None)
+        if description_data:
+            try:
+                description = json.loads(description_data)
+            except json.JSONDecodeError:
+                description = {"description": "No valid description available."}
+        else:
+            description = {"description": "No description available."}
+
+        # Append the necessary data to the image list
+        image_list.append({
+            '_id': str(file._id),  # Ensure _id is in string format
+            'filename': file.filename,
+            'url': url_for('main.static_image', filename=file.filename),
+            'description': description.get('description', 'No description available'),
+            'name': description.get('name', 'No name available'),
+            'price': description.get('price', 'N/A'),
+            'inStock': description.get('inStock', False)
+        })
 
     # Calculate total pages
     total_pages = (total_files + per_page - 1) // per_page
@@ -141,23 +195,99 @@ def static_image(filename):
     print(f'File not found: {filename}')
     return redirect(url_for('main.home'))
 
-@main_bp.route('/images/<filename>', methods=['GET'])
-@login_required
-def product_detail(filename):
-    file = fs.find_one({'filename': filename})
+# @main_bp.route('/products/<product_id>', methods=['GET'])
+# def product_detail(product_id):
+#     try:
+#         # Fetch the product using its _id from GridFS
+#         file = fs.get(ObjectId(product_id))
+#     except Exception as e:
+#         return "Product not found", 404
+
+#     if file:
+#         # Access the description from metadata
+#         description_data = file.metadata.get('description', '{}')
+#         try:
+#             description = json.loads(description_data)
+#         except json.JSONDecodeError:
+#             description = {"description": "No valid description available."}
+
+#         # Prepare the product data to pass to the template
+#         image = {
+#             '_id': str(file._id),  # Ensure _id is in string format
+#             'filename': file.filename,
+#             'name': description.get('name', 'No name available'),
+#             'description': description.get('description', 'No description available'),
+#             'price': description.get('price', 'N/A'),
+#             'inStock': description.get('inStock', False),
+#             'url': url_for('main.static_image', filename=file.filename),
+#         }
+
+#         folder_name = file.metadata.get('folder', 'products')
+#         return render_template('product_detail.html', image=image, folder_name=folder_name)
+
+#     return "Product not found", 404
+
+
+@main_bp.route('/products/<product_id>', methods=['GET'])
+def product_detail(product_id):
+    try:
+        # Fetch the product using its _id from GridFS
+        file = fs.get(ObjectId(product_id))
+    except Exception as e:
+        return "Product not found", 404
 
     if file:
-        image = {
-            'filename': file.filename,
-            'url': url_for('main.static_image', filename=file.filename),
-            'description': file.metadata.get('description', 'No description available')
-        }
-        folder_name = file.metadata.get('folder', 'products')
-        page = int(request.args.get('page', 1))
+        # Ensure that metadata is properly structured
+        description_data = file.metadata.get('description', '{}')
+        try:
+            description = json.loads(description_data)  # Parse JSON metadata
+        except json.JSONDecodeError:
+            description = {
+                "name": "No name available",
+                "description": "No description available",
+                "price": "N/A",
+                "inStock": False
+            }
 
-        return render_template('product_detail.html', image=image, folder_name=folder_name, page=page)
-    
-    return "File not found", 404
+        # Prepare the product data to pass to the template
+        image = {
+            '_id': str(file._id),  # Convert ObjectId to string
+            'filename': file.filename,
+            'name': description.get('name', 'No name available'),
+            'description': description.get('description', 'No description available'),
+            'price': description.get('price', 'N/A'),
+            'inStock': description.get('inStock', False),
+            'url': url_for('main.static_image', filename=file.filename),
+        }
+
+        folder_name = file.metadata.get('folder', 'products')
+        return render_template('product_detail.html', image=image, folder_name=folder_name)
+
+    return "Product not found", 404
+
+@main_bp.route('/products', methods=['GET'])
+def product_list():
+    # Fetch the list of images from the database (MongoDB/GridFS)
+    images = []
+    files = fs.find({})  # Assuming you're retrieving the files from GridFS
+
+    for file in files:
+        description_data = file.metadata.get('description', '{}')
+        try:
+            description = json.loads(description_data)
+        except json.JSONDecodeError:
+            description = {}
+
+        image = {
+            '_id': str(file._id),  # Convert ObjectId to string
+            'name': description.get('name', 'No name available'),
+            'description': description.get('description', 'No description available'),
+            'price': description.get('price', 'N/A'),
+            'url': url_for('main.static_image', filename=file.filename)
+        }
+        images.append(image)
+
+    return render_template('product_list.html', images=images)
 
 
 @main_bp.route('/facebook-login')
