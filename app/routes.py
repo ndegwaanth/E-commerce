@@ -152,7 +152,7 @@ def product_detail(filename):
             'url': url_for('main.static_image', filename=file.filename),
             'description': file.metadata.get('description', 'No description available')
         }
-        folder_name = file.metadata.get('folder', 'default_folder')
+        folder_name = file.metadata.get('folder', 'products')
         page = int(request.args.get('page', 1))
 
         return render_template('product_detail.html', image=image, folder_name=folder_name, page=page)

@@ -1,288 +1,1300 @@
-[
-  {
-    "id": 1,
-    "name": "Floral Print Crop Top",
-    "description": "A cute floral print crop top with a square neckline and puff sleeves.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "White with Floral Print",
-    "price": 20.99,
-    "material": "100% Cotton",
-    "inStock": true
-  },
-  {
-    "id": 2,
-    "name": "Ribbed Knit Crop Top",
-    "description": "A slim-fit ribbed knit crop top with a scoop neck, ideal for casual wear.",
-    "size": [
-      "XS",
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Black",
-    "price": 15.99,
-    "material": "95% Cotton, 5% Spandex",
-    "inStock": true
-  },
-  {
-    "id": 3,
-    "name": "Off-Shoulder Crop Top",
-    "description": "An off-shoulder crop top with elasticized neckline and ruffled hem, perfect for summer outings.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Light Blue",
-    "price": 18.99,
-    "material": "Polyester",
-    "inStock": true
-  },
-  {
-    "id": 4,
-    "name": "Tie-Front Wrap Crop Top",
-    "description": "Wrap-style crop top with a tie front and short sleeves, versatile for any occasion.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Olive Green",
-    "price": 22.99,
-    "material": "Linen Blend",
-    "inStock": false
-  },
-  {
-    "id": 5,
-    "name": "Mesh Long-Sleeve Crop Top",
-    "description": "A stylish sheer mesh long-sleeve crop top, perfect for layering.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Black",
-    "price": 25.99,
-    "material": "Mesh Fabric",
-    "inStock": true
-  },
-  {
-    "id": 6,
-    "name": "Graphic Print Crop Top",
-    "description": "Graphic print crop top with bold design, ideal for casual street style.",
-    "size": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "color": "White",
-    "price": 19.99,
-    "material": "100% Cotton",
-    "inStock": true
-  },
-  {
-    "id": 7,
-    "name": "Bandeau Crop Top",
-    "description": "A simple yet chic strapless bandeau crop top, available in multiple colors.",
-    "size": [
-      "XS",
-      "S",
-      "M"
-    ],
-    "color": "Red",
-    "price": 12.99,
-    "material": "95% Cotton, 5% Spandex",
-    "inStock": true
-  },
-  {
-    "id": 8,
-    "name": "Strappy Back Crop Top",
-    "description": "Crop top with delicate strappy back detailing and a halter neckline.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Navy Blue",
-    "price": 21.99,
-    "material": "Polyester",
-    "inStock": false
-  },
-  {
-    "id": 9,
-    "name": "Plaid Flannel Crop Top",
-    "description": "Plaid flannel crop top with button-up front, ideal for layering or casual wear.",
-    "size": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "color": "Red Plaid",
-    "price": 24.99,
-    "material": "100% Cotton",
-    "inStock": true
-  },
-  {
-    "id": 10,
-    "name": "Lace Trim Crop Top",
-    "description": "A feminine crop top with lace trim and adjustable straps for a perfect fit.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Pink",
-    "price": 17.99,
-    "material": "Satin",
-    "inStock": true
-  },
-  {
-    "id": 11,
-    "name": "Basic Ribbed Tank Crop Top",
-    "description": "A versatile ribbed tank crop top, perfect for layering or wearing solo.",
-    "size": [
-      "XS",
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Grey",
-    "price": 14.99,
-    "material": "Cotton Blend",
-    "inStock": true
-  },
-  {
-    "id": 12,
-    "name": "One-Shoulder Crop Top",
-    "description": "One-shoulder crop top with a body-hugging fit, great for casual or night-out looks.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Black",
-    "price": 19.99,
-    "material": "95% Cotton, 5% Spandex",
-    "inStock": true
-  },
-  {
-    "id": 13,
-    "name": "Ruffle Sleeve Crop Top",
-    "description": "Lightweight crop top with ruffle sleeves, perfect for adding a flirty touch to any outfit.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Yellow",
-    "price": 23.99,
-    "material": "Chiffon",
-    "inStock": true
-  },
-  {
-    "id": 14,
-    "name": "Tie-Dye Crop Top",
-    "description": "Tie-dye crop top with vibrant colors and a relaxed fit for a trendy look.",
-    "size": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "color": "Tie-Dye",
-    "price": 16.99,
-    "material": "Cotton Blend",
-    "inStock": true
-  },
-  {
-    "id": 15,
-    "name": "Velvet Halter Crop Top",
-    "description": "A luxurious velvet halter crop top, perfect for evening events or parties.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Burgundy",
-    "price": 26.99,
-    "material": "Velvet",
-    "inStock": false
-  },
-  {
-    "id": 16,
-    "name": "Button-Front Crop Top",
-    "description": "Casual button-front crop top with a relaxed fit and short sleeves.",
-    "size": [
-      "S",
-      "M",
-      "L",
-      "XL"
-    ],
-    "color": "White",
-    "price": 22.49,
-    "material": "Linen",
-    "inStock": true
-  },
-  {
-    "id": 17,
-    "name": "Sequin Crop Top",
-    "description": "Shiny sequin crop top perfect for parties or night-outs, featuring spaghetti straps.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Silver",
-    "price": 29.99,
-    "material": "Polyester",
-    "inStock": false
-  },
-  {
-    "id": 18,
-    "name": "Wrap Tie-Front Crop Top",
-    "description": "Elegant wrap tie-front crop top with a deep V-neckline and long sleeves.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Wine Red",
-    "price": 27.99,
-    "material": "Polyester Blend",
-    "inStock": true
-  },
-  {
-    "id": 19,
-    "name": "Athletic Sports Crop Top",
-    "description": "A sporty crop top with moisture-wicking fabric, perfect for workouts.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "Black",
-    "price": 24.99,
-    "material": "Nylon, Spandex",
-    "inStock": true
-  },
-  {
-    "id": 20,
-    "name": "Embroidered Crop Top",
-    "description": "Boho-inspired crop top with delicate embroidery and balloon sleeves.",
-    "size": [
-      "S",
-      "M",
-      "L"
-    ],
-    "color": "White",
-    "price": 28.99,
-    "material": "Cotton",
-    "inStock": true
-  }
-]
+{
+  "crop-tops": [
+    {
+      "id": 1,
+      "name": "Floral Print Crop Top",
+      "description": "A cute floral print crop top with a square neckline and puff sleeves.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "White with Floral Print",
+      "price": 20.99,
+      "material": "100% Cotton",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Ribbed Knit Crop Top",
+      "description": "A slim-fit ribbed knit crop top with a scoop neck, ideal for casual wear.",
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Black",
+      "price": 15.99,
+      "material": "95% Cotton, 5% Spandex",
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "name": "Off-Shoulder Crop Top",
+      "description": "An off-shoulder crop top with elasticized neckline and ruffled hem, perfect for summer outings.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Light Blue",
+      "price": 18.99,
+      "material": "Polyester",
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Tie-Front Wrap Crop Top",
+      "description": "Wrap-style crop top with a tie front and short sleeves, versatile for any occasion.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Olive Green",
+      "price": 22.99,
+      "material": "Linen Blend",
+      "inStock": false
+    },
+    {
+      "id": 5,
+      "name": "Mesh Long-Sleeve Crop Top",
+      "description": "A stylish sheer mesh long-sleeve crop top, perfect for layering.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Black",
+      "price": 25.99,
+      "material": "Mesh Fabric",
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Graphic Print Crop Top",
+      "description": "Graphic print crop top with bold design, ideal for casual street style.",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "color": "White",
+      "price": 19.99,
+      "material": "100% Cotton",
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "name": "Bandeau Crop Top",
+      "description": "A simple yet chic strapless bandeau crop top, available in multiple colors.",
+      "size": [
+        "XS",
+        "S",
+        "M"
+      ],
+      "color": "Red",
+      "price": 12.99,
+      "material": "95% Cotton, 5% Spandex",
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Strappy Back Crop Top",
+      "description": "Crop top with delicate strappy back detailing and a halter neckline.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Navy Blue",
+      "price": 21.99,
+      "material": "Polyester",
+      "inStock": false
+    },
+    {
+      "id": 9,
+      "name": "Plaid Flannel Crop Top",
+      "description": "Plaid flannel crop top with button-up front, ideal for layering or casual wear.",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "color": "Red Plaid",
+      "price": 24.99,
+      "material": "100% Cotton",
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Lace Trim Crop Top",
+      "description": "A feminine crop top with lace trim and adjustable straps for a perfect fit.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Pink",
+      "price": 17.99,
+      "material": "Satin",
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "Basic Ribbed Tank Crop Top",
+      "description": "A versatile ribbed tank crop top, perfect for layering or wearing solo.",
+      "size": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Grey",
+      "price": 14.99,
+      "material": "Cotton Blend",
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "One-Shoulder Crop Top",
+      "description": "One-shoulder crop top with a body-hugging fit, great for casual or night-out looks.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Black",
+      "price": 19.99,
+      "material": "95% Cotton, 5% Spandex",
+      "inStock": true
+    },
+    {
+      "id": 13,
+      "name": "Ruffle Sleeve Crop Top",
+      "description": "Lightweight crop top with ruffle sleeves, perfect for adding a flirty touch to any outfit.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Yellow",
+      "price": 23.99,
+      "material": "Chiffon",
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "Tie-Dye Crop Top",
+      "description": "Tie-dye crop top with vibrant colors and a relaxed fit for a trendy look.",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "color": "Tie-Dye",
+      "price": 16.99,
+      "material": "Cotton Blend",
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "name": "Velvet Halter Crop Top",
+      "description": "A luxurious velvet halter crop top, perfect for evening events or parties.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Burgundy",
+      "price": 26.99,
+      "material": "Velvet",
+      "inStock": false
+    },
+    {
+      "id": 16,
+      "name": "Button-Front Crop Top",
+      "description": "Casual button-front crop top with a relaxed fit and short sleeves.",
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "color": "White",
+      "price": 22.49,
+      "material": "Linen",
+      "inStock": true
+    },
+    {
+      "id": 17,
+      "name": "Sequin Crop Top",
+      "description": "Shiny sequin crop top perfect for parties or night-outs, featuring spaghetti straps.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Silver",
+      "price": 29.99,
+      "material": "Polyester",
+      "inStock": false
+    },
+    {
+      "id": 18,
+      "name": "Wrap Tie-Front Crop Top",
+      "description": "Elegant wrap tie-front crop top with a deep V-neckline and long sleeves.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Wine Red",
+      "price": 27.99,
+      "material": "Polyester Blend",
+      "inStock": true
+    },
+    {
+      "id": 19,
+      "name": "Athletic Sports Crop Top",
+      "description": "A sporty crop top with moisture-wicking fabric, perfect for workouts.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "Black",
+      "price": 24.99,
+      "material": "Nylon, Spandex",
+      "inStock": true
+    },
+    {
+      "id": 20,
+      "name": "Embroidered Crop Top",
+      "description": "Boho-inspired crop top with delicate embroidery and balloon sleeves.",
+      "size": [
+        "S",
+        "M",
+        "L"
+      ],
+      "color": "White",
+      "price": 28.99,
+      "material": "Cotton",
+      "inStock": true
+    }
+  ],
+  "electronics": [
+    {
+      "id": 1,
+      "name": "Smartphone X",
+      "description": "A high-performance smartphone with a 6.5-inch OLED display, 128GB storage, and a dual-camera system.",
+      "features": [
+        "6.5-inch OLED display",
+        "128GB storage",
+        "Dual-camera system"
+      ],
+      "color": "Midnight Black",
+      "price": 999.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Wireless Noise-Cancelling Headphones",
+      "description": "Over-ear wireless headphones with active noise cancellation and 30-hour battery life.",
+      "features": [
+        "Active noise cancellation",
+        "30-hour battery life",
+        "Bluetooth 5.0"
+      ],
+      "color": "Silver",
+      "price": 299.99,
+      "warranty": "2 Years",
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "name": "4K Ultra HD Smart TV",
+      "description": "65-inch 4K Ultra HD smart TV with HDR support and built-in streaming apps.",
+      "features": [
+        "65-inch 4K display",
+        "HDR support",
+        "Built-in apps"
+      ],
+      "color": "Black",
+      "price": 1199.99,
+      "warranty": "3 Years",
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Smart Home Speaker",
+      "description": "A compact smart speaker with voice assistant integration and multi-room audio support.",
+      "features": [
+        "Voice assistant integration",
+        "Multi-room audio",
+        "Compact design"
+      ],
+      "color": "White",
+      "price": 99.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Gaming Laptop",
+      "description": "Powerful gaming laptop with a 15.6-inch 144Hz display, Intel i7 processor, and 16GB RAM.",
+      "features": [
+        "15.6-inch 144Hz display",
+        "Intel i7 processor",
+        "16GB RAM"
+      ],
+      "color": "Black",
+      "price": 1499.99,
+      "warranty": "2 Years",
+      "inStock": false
+    },
+    {
+      "id": 6,
+      "name": "Bluetooth Soundbar",
+      "description": "A sleek Bluetooth soundbar with Dolby Atmos support and wireless subwoofer.",
+      "features": [
+        "Bluetooth connectivity",
+        "Dolby Atmos",
+        "Wireless subwoofer"
+      ],
+      "color": "Black",
+      "price": 399.99,
+      "warranty": "2 Years",
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "name": "Smartwatch Pro",
+      "description": "Smartwatch with fitness tracking, heart rate monitor, and GPS capabilities.",
+      "features": [
+        "Fitness tracking",
+        "Heart rate monitor",
+        "GPS"
+      ],
+      "color": "Space Gray",
+      "price": 249.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Tablet 10",
+      "description": "10-inch tablet with 64GB storage, Full HD display, and stylus support.",
+      "features": [
+        "10-inch Full HD display",
+        "64GB storage",
+        "Stylus support"
+      ],
+      "color": "Silver",
+      "price": 329.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "name": "Portable Bluetooth Speaker",
+      "description": "Waterproof portable Bluetooth speaker with 12-hour battery life and deep bass.",
+      "features": [
+        "Waterproof",
+        "12-hour battery life",
+        "Deep bass"
+      ],
+      "color": "Blue",
+      "price": 79.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Smart Thermostat",
+      "description": "Smart thermostat with programmable settings, energy-saving features, and mobile app control.",
+      "features": [
+        "Energy-saving features",
+        "Mobile app control",
+        "Programmable settings"
+      ],
+      "color": "White",
+      "price": 199.99,
+      "warranty": "3 Years",
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "Home Security Camera",
+      "description": "1080p indoor security camera with motion detection, night vision, and two-way audio.",
+      "features": [
+        "1080p resolution",
+        "Motion detection",
+        "Night vision"
+      ],
+      "color": "Black",
+      "price": 59.99,
+      "warranty": "2 Years",
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "Robot Vacuum Cleaner",
+      "description": "Automatic robot vacuum cleaner with Wi-Fi control, smart mapping, and self-charging.",
+      "features": [
+        "Wi-Fi control",
+        "Smart mapping",
+        "Self-charging"
+      ],
+      "color": "Gray",
+      "price": 399.99,
+      "warranty": "2 Years",
+      "inStock": false
+    },
+    {
+      "id": 13,
+      "name": "Wireless Charging Pad",
+      "description": "Fast wireless charging pad compatible with most smartphones and smartwatches.",
+      "features": [
+        "Fast charging",
+        "Compact design",
+        "Universal compatibility"
+      ],
+      "color": "Black",
+      "price": 29.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "Noise-Cancelling Earbuds",
+      "description": "In-ear wireless earbuds with noise cancellation and touch controls.",
+      "features": [
+        "Noise cancellation",
+        "Touch controls",
+        "Long battery life"
+      ],
+      "color": "White",
+      "price": 199.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "name": "Smart Light Bulb",
+      "description": "Dimmable smart light bulb with color-changing capabilities and voice control.",
+      "features": [
+        "Color-changing",
+        "Voice control",
+        "Dimmable"
+      ],
+      "color": "Multicolor",
+      "price": 24.99,
+      "warranty": "2 Years",
+      "inStock": true
+    },
+    {
+      "id": 16,
+      "name": "Fitness Tracker",
+      "description": "Fitness tracker with heart rate monitoring, sleep tracking, and water resistance.",
+      "features": [
+        "Heart rate monitor",
+        "Sleep tracking",
+        "Water resistance"
+      ],
+      "color": "Black",
+      "price": 99.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 17,
+      "name": "Smart Plug",
+      "description": "Wi-Fi smart plug with energy monitoring and voice control support.",
+      "features": [
+        "Energy monitoring",
+        "Voice control",
+        "Compact size"
+      ],
+      "color": "White",
+      "price": 19.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "name": "Wireless Gaming Mouse",
+      "description": "Ergonomic wireless gaming mouse with RGB lighting and 16000 DPI.",
+      "features": [
+        "RGB lighting",
+        "16000 DPI",
+        "Ergonomic design"
+      ],
+      "color": "Black",
+      "price": 69.99,
+      "warranty": "1 Year",
+      "inStock": true
+    },
+    {
+      "id": 19,
+      "name": "Electric Scooter",
+      "description": "Foldable electric scooter with a top speed of 25 mph and a range of 20 miles.",
+      "features": [
+        "25 mph top speed",
+        "20-mile range",
+        "Foldable design"
+      ],
+      "color": "Black",
+      "price": 499.99,
+      "warranty": "2 Years",
+      "inStock": false
+    },
+    {
+      "id": 20,
+      "name": "Wireless Charging Stand",
+      "description": "Dual wireless charging stand for smartphones and smartwatches with fast charging support.",
+      "features": [
+        "Dual charging",
+        "Fast charging",
+        "Compact design"
+      ],
+      "color": "Black",
+      "price": 49.99,
+      "warranty": "1 Year",
+      "inStock": true
+    }
+  ],
+  "handbags": [
+    {
+      "id": 1,
+      "name": "Classic Leather Tote",
+      "description": "A spacious leather tote bag with clean lines, perfect for work or travel.",
+      "color": "Black",
+      "price": 149.99,
+      "material": "Genuine Leather",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Quilted Crossbody Bag",
+      "description": "A stylish quilted crossbody bag with a gold chain strap for a chic look.",
+      "color": "Beige",
+      "price": 89.99,
+      "material": "Vegan Leather",
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "name": "Mini Shoulder Bag",
+      "description": "A compact mini shoulder bag with a sleek design, ideal for evenings out.",
+      "color": "Red",
+      "price": 59.99,
+      "material": "Faux Leather",
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Woven Straw Bag",
+      "description": "A lightweight woven straw bag with a relaxed, beachy feel.",
+      "color": "Natural",
+      "price": 45.99,
+      "material": "Straw",
+      "inStock": false
+    },
+    {
+      "id": 5,
+      "name": "Bucket Bag",
+      "description": "A trendy bucket bag with a drawstring closure and detachable strap.",
+      "color": "Olive Green",
+      "price": 79.99,
+      "material": "Leather",
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Fringe Hobo Bag",
+      "description": "A boho-inspired hobo bag with fringe detailing and a slouchy shape.",
+      "color": "Tan",
+      "price": 129.99,
+      "material": "Suede",
+      "inStock": false
+    },
+    {
+      "id": 7,
+      "name": "Convertible Backpack",
+      "description": "A versatile convertible bag that transforms from a backpack to a crossbody.",
+      "color": "Grey",
+      "price": 99.99,
+      "material": "Nylon",
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Saddle Bag",
+      "description": "A classic saddle bag with a flap closure and adjustable strap.",
+      "color": "Brown",
+      "price": 89.99,
+      "material": "Faux Leather",
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "name": "Metallic Clutch",
+      "description": "A glamorous metallic clutch with a detachable chain strap, perfect for evening events.",
+      "color": "Silver",
+      "price": 49.99,
+      "material": "Polyurethane",
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Canvas Tote",
+      "description": "A durable canvas tote bag, ideal for casual outings or as a reusable shopping bag.",
+      "color": "Navy Blue",
+      "price": 29.99,
+      "material": "Canvas",
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "Embossed Satchel",
+      "description": "A chic embossed satchel with a top handle and a detachable crossbody strap.",
+      "color": "Burgundy",
+      "price": 159.99,
+      "material": "Leather",
+      "inStock": false
+    },
+    {
+      "id": 12,
+      "name": "Transparent PVC Bag",
+      "description": "A trendy transparent PVC bag with a zip closure and leather trim.",
+      "color": "Clear",
+      "price": 64.99,
+      "material": "PVC",
+      "inStock": true
+    },
+    {
+      "id": 13,
+      "name": "Beaded Evening Bag",
+      "description": "A delicate beaded evening bag with intricate details and a snap closure.",
+      "color": "Gold",
+      "price": 74.99,
+      "material": "Beads and Satin",
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "Floral Embroidered Crossbody",
+      "description": "A vibrant crossbody bag with floral embroidery and a zip-top closure.",
+      "color": "Black with Floral Embroidery",
+      "price": 69.99,
+      "material": "Canvas and Faux Leather",
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "name": "Round Rattan Bag",
+      "description": "A trendy round rattan bag with a leather strap, perfect for summer.",
+      "color": "Natural",
+      "price": 54.99,
+      "material": "Rattan",
+      "inStock": true
+    },
+    {
+      "id": 16,
+      "name": "Patent Leather Shoulder Bag",
+      "description": "A glossy patent leather shoulder bag with a sleek, structured design.",
+      "color": "Pink",
+      "price": 139.99,
+      "material": "Patent Leather",
+      "inStock": false
+    },
+    {
+      "id": 17,
+      "name": "Boho Fringe Crossbody",
+      "description": "A boho-style crossbody bag with fringe detailing and a relaxed fit.",
+      "color": "Brown",
+      "price": 59.99,
+      "material": "Suede",
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "name": "Croc Embossed Bag",
+      "description": "A luxurious croc-embossed handbag with a top handle and gold accents.",
+      "color": "Emerald Green",
+      "price": 189.99,
+      "material": "Faux Croc Leather",
+      "inStock": true
+    },
+    {
+      "id": 19,
+      "name": "Mesh Chain Bag",
+      "description": "A unique mesh chain bag with a metallic finish, perfect for adding edge to any outfit.",
+      "color": "Gunmetal",
+      "price": 79.99,
+      "material": "Metal Mesh",
+      "inStock": false
+    },
+    {
+      "id": 20,
+      "name": "Envelope Clutch",
+      "description": "A sophisticated envelope clutch with a magnetic closure and interior pockets.",
+      "color": "Nude",
+      "price": 39.99,
+      "material": "Faux Leather",
+      "inStock": true
+    }
+  ],
+  "High-heels": [
+    {
+      "id": 1,
+      "name": "Stiletto Pumps",
+      "description": "Classic pointed-toe stiletto pumps with a sleek design for a polished look.",
+      "color": "Black",
+      "price": 89.99,
+      "material": "Patent Leather",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Strappy Sandal Heels",
+      "description": "Elegant strappy sandal heels with an adjustable ankle strap and open toe.",
+      "color": "Silver",
+      "price": 79.99,
+      "material": "Metallic Leather",
+      "inStock": false
+    },
+    {
+      "id": 3,
+      "name": "Block Heel Mules",
+      "description": "Comfortable block heel mules with a wide strap and minimalist design.",
+      "color": "Beige",
+      "price": 64.99,
+      "material": "Suede",
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Platform Heels",
+      "description": "Bold platform heels with a chunky heel and ankle strap for extra height.",
+      "color": "Red",
+      "price": 109.99,
+      "material": "Velvet",
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Kitten Heel Slingbacks",
+      "description": "Chic kitten heel slingbacks with a pointed toe and a low-profile heel.",
+      "color": "Navy Blue",
+      "price": 59.99,
+      "material": "Satin",
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Peep Toe Stilettos",
+      "description": "Glamorous peep toe stilettos with a high heel and elegant silhouette.",
+      "color": "Gold",
+      "price": 99.99,
+      "material": "Faux Leather",
+      "inStock": false
+    },
+    {
+      "id": 7,
+      "name": "Ankle Strap Heels",
+      "description": "Sophisticated ankle strap heels with a mid-heel height for comfort and style.",
+      "color": "Blush Pink",
+      "price": 69.99,
+      "material": "Leather",
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Caged High Heels",
+      "description": "Edgy caged high heels with cut-out detailing and a back zipper for easy wear.",
+      "color": "Black",
+      "price": 89.99,
+      "material": "Faux Leather",
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "name": "Sculptural Heel Sandals",
+      "description": "Unique sculptural heel sandals with geometric heels for a modern touch.",
+      "color": "White",
+      "price": 119.99,
+      "material": "Patent Leather",
+      "inStock": false
+    },
+    {
+      "id": 10,
+      "name": "T-strap High Heels",
+      "description": "Vintage-inspired T-strap high heels with a slim stiletto and closed toe.",
+      "color": "Burgundy",
+      "price": 79.99,
+      "material": "Suede",
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "Pointed Toe Heels",
+      "description": "Elegant pointed toe heels with a slim heel and soft leather finish.",
+      "color": "Ivory",
+      "price": 94.99,
+      "material": "Genuine Leather",
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "Crystal Embellished Heels",
+      "description": "Stunning high heels with crystal embellishments and a delicate ankle strap.",
+      "color": "Rose Gold",
+      "price": 149.99,
+      "material": "Satin",
+      "inStock": false
+    },
+    {
+      "id": 13,
+      "name": "Mesh High Heels",
+      "description": "Breathable mesh high heels with an open toe and stiletto heel.",
+      "color": "Black",
+      "price": 84.99,
+      "material": "Mesh and Leather",
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "Lace-up High Heels",
+      "description": "Stylish lace-up high heels with long laces that wrap around the ankle.",
+      "color": "Tan",
+      "price": 89.99,
+      "material": "Suede",
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "name": "Animal Print Heels",
+      "description": "Bold animal print high heels with a pointed toe and sleek design.",
+      "color": "Leopard",
+      "price": 99.99,
+      "material": "Faux Leather",
+      "inStock": true
+    },
+    {
+      "id": 16,
+      "name": "Mary Jane Heels",
+      "description": "Retro Mary Jane heels with a single strap and round toe design.",
+      "color": "Red",
+      "price": 74.99,
+      "material": "Patent Leather",
+      "inStock": false
+    },
+    {
+      "id": 17,
+      "name": "Gladiator High Heels",
+      "description": "Statement gladiator high heels with intricate straps and a tall heel.",
+      "color": "Brown",
+      "price": 119.99,
+      "material": "Leather",
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "name": "Bow Detail Heels",
+      "description": "Feminine high heels with a bow detail on the toe and an ankle strap.",
+      "color": "Pink",
+      "price": 69.99,
+      "material": "Satin",
+      "inStock": true
+    },
+    {
+      "id": 19,
+      "name": "Velvet High Heels",
+      "description": "Luxurious velvet high heels with a block heel and rounded toe.",
+      "color": "Emerald Green",
+      "price": 109.99,
+      "material": "Velvet",
+      "inStock": false
+    },
+    {
+      "id": 20,
+      "name": "Studded High Heels",
+      "description": "Edgy high heels with studded detailing and a strappy design.",
+      "color": "Black",
+      "price": 99.99,
+      "material": "Faux Leather",
+      "inStock": true
+    }
+  ],
+  "Men-clothes": [
+    {
+      "id": 1,
+      "name": "Slim Fit Dress Shirt",
+      "description": "A crisp, slim-fit dress shirt with a modern cut, perfect for formal occasions.",
+      "color": "White",
+      "price": 45.99,
+      "material": "Cotton",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Classic Denim Jacket",
+      "description": "A rugged, timeless denim jacket with button closure and multiple pockets.",
+      "color": "Blue",
+      "price": 79.99,
+      "material": "Denim",
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "name": "Casual Crew Neck T-shirt",
+      "description": "Soft, casual crew neck t-shirt designed for everyday comfort.",
+      "color": "Black",
+      "price": 19.99,
+      "material": "Cotton",
+      "inStock": false
+    },
+    {
+      "id": 4,
+      "name": "Wool Blend Overcoat",
+      "description": "A sophisticated wool-blend overcoat that adds a refined touch to winter outfits.",
+      "color": "Charcoal Grey",
+      "price": 159.99,
+      "material": "Wool Blend",
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "V-neck Sweater",
+      "description": "A versatile V-neck sweater that can be worn over a dress shirt or alone.",
+      "color": "Navy",
+      "price": 49.99,
+      "material": "Merino Wool",
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Chino Pants",
+      "description": "Comfortable chino pants with a slim fit, perfect for business casual settings.",
+      "color": "Khaki",
+      "price": 39.99,
+      "material": "Cotton",
+      "inStock": false
+    },
+    {
+      "id": 7,
+      "name": "Bomber Jacket",
+      "description": "A trendy bomber jacket with ribbed cuffs and a sleek zip-up design.",
+      "color": "Olive Green",
+      "price": 89.99,
+      "material": "Nylon",
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Graphic Hoodie",
+      "description": "A stylish hoodie featuring a bold graphic print and a kangaroo pocket.",
+      "color": "Grey",
+      "price": 54.99,
+      "material": "Cotton Blend",
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "name": "Tailored Blazer",
+      "description": "A sharp tailored blazer with a slim fit, ideal for formal events or business meetings.",
+      "color": "Black",
+      "price": 129.99,
+      "material": "Wool Blend",
+      "inStock": false
+    },
+    {
+      "id": 10,
+      "name": "Casual Linen Shirt",
+      "description": "A breathable linen shirt with a relaxed fit, great for warm-weather casual wear.",
+      "color": "Beige",
+      "price": 39.99,
+      "material": "Linen",
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "Jogger Pants",
+      "description": "Relaxed fit jogger pants with elastic cuffs, suitable for activewear or lounging.",
+      "color": "Grey",
+      "price": 34.99,
+      "material": "Polyester Blend",
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "Polo Shirt",
+      "description": "A classic polo shirt with a breathable, piqué texture and ribbed collar.",
+      "color": "Light Blue",
+      "price": 29.99,
+      "material": "Cotton",
+      "inStock": false
+    },
+    {
+      "id": 13,
+      "name": "Leather Biker Jacket",
+      "description": "A rugged leather biker jacket with an asymmetrical zip closure and a tailored fit.",
+      "color": "Black",
+      "price": 199.99,
+      "material": "Genuine Leather",
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "Cargo Shorts",
+      "description": "Durable cargo shorts with multiple pockets for outdoor adventures or casual outings.",
+      "color": "Camouflage",
+      "price": 34.99,
+      "material": "Cotton",
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "name": "Turtleneck Sweater",
+      "description": "A warm turtleneck sweater with a soft knit, perfect for layering in cold weather.",
+      "color": "Maroon",
+      "price": 59.99,
+      "material": "Wool Blend",
+      "inStock": false
+    },
+    {
+      "id": 16,
+      "name": "Fitted Trousers",
+      "description": "Tailored fitted trousers that provide a sharp, streamlined silhouette.",
+      "color": "Charcoal",
+      "price": 69.99,
+      "material": "Polyester",
+      "inStock": true
+    },
+    {
+      "id": 17,
+      "name": "Puffer Jacket",
+      "description": "A lightweight puffer jacket with insulating down for warmth and comfort.",
+      "color": "Navy Blue",
+      "price": 99.99,
+      "material": "Down",
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "name": "Henley Shirt",
+      "description": "A casual long-sleeve Henley shirt with a buttoned placket and soft cotton fabric.",
+      "color": "Olive",
+      "price": 24.99,
+      "material": "Cotton",
+      "inStock": false
+    },
+    {
+      "id": 19,
+      "name": "Plaid Button-Up Shirt",
+      "description": "A versatile plaid button-up shirt with a relaxed fit, ideal for casual and outdoor wear.",
+      "color": "Red",
+      "price": 34.99,
+      "material": "Flannel",
+      "inStock": true
+    },
+    {
+      "id": 20,
+      "name": "Tailored Suit",
+      "description": "A finely tailored suit with a slim fit and notch lapels, perfect for formal events.",
+      "color": "Grey",
+      "price": 249.99,
+      "material": "Wool",
+      "inStock": true
+    }
+  ],
+  "Smart-phone": [
+    {
+      "id": 1,
+      "name": "iPhone 14 Pro Max",
+      "description": "Apple's flagship smartphone with a 6.7-inch Super Retina XDR display, A16 Bionic chip, and triple-camera system.",
+      "color": "Space Black",
+      "price": 1199.99,
+      "storage": "256GB",
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S23 Ultra",
+      "description": "High-end Android phone with a 6.8-inch Dynamic AMOLED 2X display, 200MP camera, and Snapdragon 8 Gen 2 processor.",
+      "color": "Phantom Black",
+      "price": 1299.99,
+      "storage": "512GB",
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "name": "Google Pixel 7 Pro",
+      "description": "Google's flagship phone with a 6.7-inch OLED display, Tensor G2 chip, and an advanced camera system with AI features.",
+      "color": "Obsidian",
+      "price": 899.99,
+      "storage": "128GB",
+      "inStock": false
+    },
+    {
+      "id": 4,
+      "name": "OnePlus 11",
+      "description": "Premium smartphone with a 6.55-inch Fluid AMOLED display, Snapdragon 8 Gen 1 processor, and Hasselblad-tuned camera.",
+      "color": "Emerald Green",
+      "price": 799.99,
+      "storage": "256GB",
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Xiaomi 13 Pro",
+      "description": "A 6.73-inch AMOLED flagship phone with a Snapdragon 8 Gen 2 processor and 120Hz refresh rate.",
+      "color": "Ceramic White",
+      "price": 899.99,
+      "storage": "512GB",
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Sony Xperia 1 IV",
+      "description": "Sony's premium 4K OLED display smartphone with Snapdragon 8 Gen 1, 12GB RAM, and a professional-level camera.",
+      "color": "Frosted Black",
+      "price": 999.99,
+      "storage": "256GB",
+      "inStock": false
+    },
+    {
+      "id": 7,
+      "name": "Oppo Find X5 Pro",
+      "description": "6.7-inch AMOLED display with Snapdragon 8 Gen 1, 50MP triple-camera system, and 80W fast charging.",
+      "color": "Glaze Black",
+      "price": 899.99,
+      "storage": "256GB",
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Asus ROG Phone 6",
+      "description": "A gaming-centric phone with a 6.78-inch AMOLED display, Snapdragon 8+ Gen 1, and a massive 6000mAh battery.",
+      "color": "Storm White",
+      "price": 999.99,
+      "storage": "512GB",
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "name": "Huawei Mate 50 Pro",
+      "description": "6.74-inch OLED display, Snapdragon 8+ Gen 1 processor, and a 50MP Ultra Aperture XMAGE Camera.",
+      "color": "Orange",
+      "price": 1099.99,
+      "storage": "256GB",
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Realme GT 2 Pro",
+      "description": "Flagship-level phone with a 6.7-inch 2K AMOLED display, Snapdragon 8 Gen 1, and 65W fast charging.",
+      "color": "Paper White",
+      "price": 749.99,
+      "storage": "256GB",
+      "inStock": false
+    },
+    {
+      "id": 11,
+      "name": "Motorola Edge+ (2023)",
+      "description": "Premium smartphone with a 6.7-inch OLED display, Snapdragon 8 Gen 2, and a 50MP camera system.",
+      "color": "Stardust Black",
+      "price": 999.99,
+      "storage": "512GB",
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "Vivo X80 Pro",
+      "description": "High-performance smartphone with a 6.78-inch AMOLED display, Snapdragon 8 Gen 1, and a ZEISS quad-camera system.",
+      "color": "Cosmic Black",
+      "price": 899.99,
+      "storage": "512GB",
+      "inStock": true
+    },
+    {
+      "id": 13,
+      "name": "Nokia XR20",
+      "description": "A rugged 6.67-inch smartphone with a Snapdragon 480 processor, IP68 water resistance, and military-grade durability.",
+      "color": "Ultra Blue",
+      "price": 599.99,
+      "storage": "128GB",
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "ZTE Axon 40 Ultra",
+      "description": "Premium phone with a 6.8-inch AMOLED display, Snapdragon 8 Gen 1, and an under-display camera.",
+      "color": "Black",
+      "price": 949.99,
+      "storage": "256GB",
+      "inStock": false
+    },
+    {
+      "id": 15,
+      "name": "Apple iPhone SE (3rd Gen)",
+      "description": "Compact 4.7-inch Retina HD display, A15 Bionic chip, and Touch ID fingerprint sensor.",
+      "color": "Midnight",
+      "price": 429.99,
+      "storage": "128GB",
+      "inStock": true
+    },
+    {
+      "id": 16,
+      "name": "Samsung Galaxy Z Fold 4",
+      "description": "Innovative foldable phone with a 7.6-inch Infinity Flex display, Snapdragon 8+ Gen 1, and multitasking capabilities.",
+      "color": "Beige",
+      "price": 1799.99,
+      "storage": "512GB",
+      "inStock": true
+    },
+    {
+      "id": 17,
+      "name": "Google Pixel 6a",
+      "description": "Affordable 6.1-inch OLED smartphone with Google's Tensor chip and a 12MP dual-camera system.",
+      "color": "Charcoal",
+      "price": 449.99,
+      "storage": "128GB",
+      "inStock": true
+    },
+    {
+      "id": 18,
+      "name": "Sony Xperia 5 IV",
+      "description": "Compact flagship phone with a 6.1-inch OLED display, Snapdragon 8 Gen 1, and triple-lens camera system.",
+      "color": "Green",
+      "price": 849.99,
+      "storage": "256GB",
+      "inStock": true
+    },
+    {
+      "id": 19,
+      "name": "Poco F4 GT",
+      "description": "Gaming-focused phone with a 6.67-inch AMOLED display, Snapdragon 8 Gen 1, and 120W fast charging.",
+      "color": "Stealth Black",
+      "price": 699.99,
+      "storage": "256GB",
+      "inStock": true
+    },
+    {
+      "id": 20,
+      "name": "Xiaomi Redmi Note 12 Pro+",
+      "description": "Affordable smartphone with a 6.67-inch OLED display, 200MP camera, and 120W fast charging.",
+      "color": "Polar White",
+      "price": 499.99,
+      "storage": "256GB",
+      "inStock": true
+    }
+  ]
+}
