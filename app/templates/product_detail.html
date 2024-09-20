@@ -35,8 +35,8 @@
                 <p><strong>Price:</strong> ${{ image.price }}</p>
                 <p><strong>In Stock:</strong> {{ 'Yes' if image.inStock else 'No' }}</p>
                 <form action="{{ url_for('main.add_to_cart', product_id=image._id) }}" method="POST">
-                    {{ csrf_token() }}
-                    <input type="number" name="quantity" value="1" min="1" required>
+                    {{ csrf_token() }}<br>
+                    <input type="number" min="1" name="csrf_token" value="{{ csrf_token() }}" required>
                     <button type="submit" style="background-color: gold;">Add to Cart</button>
                 </form>
             </div>
@@ -45,7 +45,7 @@
         <p>Product not found.</p>
         {% endif %}
 
-        <a href="{{ url_for('main.get_images', folder_name=folder_name, page=page) }}">Back to Product List</a>
+        <a href="{{ url_for('main.get_images', folder_name=folder_name) }}">Back to Product List</a>
     </main>
 </body>
 </html>

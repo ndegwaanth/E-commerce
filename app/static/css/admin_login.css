@@ -1,0 +1,77 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a202c; /* Dark background */
+  color: #ffffff; /* White text */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Form Wrapper */
+form {
+  background-color: #2d3748; /* Dark gray form background */
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Form Labels */
+form label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input Fields */
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #4a5568; /* Lighter gray border */
+  border-radius: 4px;
+  background-color: #2d3748;
+  color: #ffffff;
+}
+
+form input::placeholder {
+  color: #cbd5e0; /* Light gray placeholder */
+}
+
+/* Submit Button */
+.btn-submit {
+  background-color: #4a90e2; /* Blue button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background-color: #357abd; /* Darker blue on hover */
+}
+
+/* Error Messages */
+.error {
+  color: #f56565; /* Red for error messages */
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
+  }
+
+  .btn-submit {
+    padding: 8px 16px;
+  }
+}

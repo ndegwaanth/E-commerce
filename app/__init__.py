@@ -21,6 +21,8 @@ csrf = CSRFProtect(app)
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 app.config["MONGO_URI_3"] = os.getenv("MONGO_URI_3")
 app.config["SECRET_KEY"] = os.getenv("FLASK_SECRET_KEY")
+# app.config['ADMIN_EMAIL'] = os.getenv("ADMIN_EMAIL")
+# app.config["ADMIN_PASSWORD"] = os.getenv("ADMIN_PASSWORD")
 
 
 if not app.config['SECRET_KEY']:

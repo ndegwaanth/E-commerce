@@ -1,24 +1,185 @@
-/* Example styling for admin dashboard */
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* General Styles */
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+header {
     margin-bottom: 20px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+#sidebar {
+    background-color: rgb(38, 38, 38);
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
-th, td {
-    padding: 8px;
-    text-align: left;
+.nav-link {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #FFFFFF;
 }
 
-th {
-    background-color: #f4f4f4;
+.nav-link.active {
+    font-weight: bold;
+    background-color: rgb(38, 38, 38);
+
 }
 
-img {
-    max-width: 100px;
-    height: auto;
+.nav-link i {
+    margin-right: 10px;
+}
+
+main {
+    margin-left: 250px; /* Adjust according to the sidebar width */
+    padding: 20px;
+    background-color: rgb(17, 24, 39);
+}
+
+footer {
+    margin-top: 20px;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 40px;
+}
+
+section h2 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-size: 1.1rem;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+#orders th tr{
+    color: red;
+}
+
+/* Additional Styles for Analytics Section */
+#analytics {
+    color: #fff;
+}
+
+#analytics .card {
+    border: none;
+    background-color: rgb(38, 38, 38); /* Dark background for cards */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#analytics .card-title {
+    font-size: 1.25em;
+    margin-bottom: 10px;
+}
+
+#analytics .card-text {
+    font-size: 2em;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #sidebar {
+        display: none; /* Hide sidebar on small screens */
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .container-fluid {
+        padding: 0 15px;
+    }
+}
+
+/* Style for the icon-container */
+.icon-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+}
+
+#menu-icon {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+/* Rotates the icon on hover */
+#menu-icon:hover {
+    transform: rotate(90deg);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: 160px;
+}
+
+.dropdown-menu a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background-color: #555;
+}
+
+/* Show the dropdown menu when hovering over the icon-container */
+.icon-container:hover .dropdown-menu {
+    display: block;
+}
+
+/* Make the tbody data inside the admin-table white */
+#orders .table tbody tr td {
+    color: white;
 }

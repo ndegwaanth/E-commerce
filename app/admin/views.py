@@ -4,6 +4,32 @@ from . import admin_bp
 from app import mongo
 from bson.objectid import ObjectId
 from gridfs import GridFS
+from .form import Admin
+import os
+
+
+@admin_bp.route('/tony', methods=['POST'])
+def admin_login():
+    from . import mongo
+    from app import mongo, bcrypt
+
+    form = Admin()
+    admin_email = os.getenv('EMAIL')
+    admin_pass = os.getenv("PASSWORD")
+
+    if form.validate_on_submit() and request.method == "POST":
+        email = form.email.data
+        password = form.password.data
+
+        hash_admin_pass = bcrypt.generate_password_hash(password).decode('utf-8')
+        mongo.db.admin.insert_one({"Email":email, "Password": hash_admin_pass})
+
+        if admin_email == email and admin_pass == password:
+            return render_template('admin_dashboard.html')
+        else:
+            return redirect(url_for('admin_bp.admin_login'))
+    else:
+        return "No templates"
 
 
 @admin_bp.route('/dashboard')
