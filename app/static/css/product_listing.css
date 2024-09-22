@@ -81,6 +81,7 @@ p {
 .icon-container {
     position: relative;
     margin-left: 750px;
+    justify-content: space-between;
 }
 
 /* Initially hide the dropdown menu */
