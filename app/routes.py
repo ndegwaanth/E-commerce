@@ -1,6 +1,7 @@
-from flask import Blueprint, request, session
+from flask import Blueprint, request, session, jsonify
 from flask import render_template, redirect, url_for, request, flash, current_app, send_file
 from flask_login import login_user, login_required, logout_user
+import requests.exceptions
 from .forms import Admin, RegistrationForm, LoginForm
 from gridfs import GridFS
 import os
@@ -10,6 +11,11 @@ from app.models import User
 from bson.objectid import ObjectId
 import json
 from dotenv import load_dotenv
+import requests
+import json
+import base64
+from datetime import datatime
+
 
 load_dotenv()
 
@@ -431,3 +437,107 @@ def remove_from_cart(product_id):
 @login_required
 def checkout():
     return render_template('checkout.html')
+
+
+
+def get_access_token():
+    consumer_key = os.getenv("MPESA_CONSUMER_KEY")
+    consumer_secret = os.getenv("MPESA_CONSUMER_SECRET")
+    api_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+
+    auth = base64.b64encode(f"{consumer_key}: {consumer_secret}".encode()).decode()
+
+    headers = {
+        "Authorizarion": f"Basic {auth}"
+    }
+
+    try:
+        response = request.get(api_url, headers=headers)
+        response.raise_for_status()
+        return response.json().get("access_token")
+    except requests.exceptions.RequestException as e:
+        return {"error": str(e)}
+
+def initiate_Stk_push(phone, amount):
+    access_token = get_access_token()
+    if "error" in access_token:
+        return jsonify(access_token), 500
+    
+    passkey = ""
+    bussiness_short_code = ""
+    process_request_url = ""
+    callback_url = ""
+    timestamp = datatime.now.string().strftime('%Y%m%d%H%M%S')
+    password = base64.b64encode((bussiness_short_code + passkey + timestamp).encode()).decode()
+
+    stk_push_headers = {
+        'Content-Type': 'application/json',
+        "Authorization": f'Bearer {access_token}'
+    }
+
+    stk_push_payload = {
+        "BusinessShortCode": bussiness_short_code,
+        "Password": password,
+        "Timestamp": timestamp,
+        "TransactionType": 'CustomerPayBillOnline',
+        "Amount": amount,
+        "PartyA": phone,
+        "PartyB": bussiness_short_code,
+        "PhoneNumber": phone,
+        "CallBackURL": callback_url,
+        "AccountReference": "TONY OPEN SOURCE",
+        "TransactionDesc": "STK Push payment"
+    }
+
+    try:
+        response = requests.post(process_request_url, headers=stk_push_headers, json=stk_push_payload)
+        response.raise_for_status()
+        response_data = response.json()
+
+        if response_data.get("ResponseCode") == "0":
+            return jsonify(
+                {
+                    "CheckoutRequestID": response_data['CheckoutRequestID'],
+                    "ResponseCode": response_data["ResponseCode"],
+                    "CustomerMessage": response_data["CustomerMessage"]
+                }
+            )
+        else:
+            return jsonify({"error": 'STK push failed.'}), 400
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
+
+@main_bp.route('/confirm', methods=["POST"])
+def confirm():
+    if request.method == "POST":
+        email = request.form.get("email")
+        username = request.form.get("username")
+        address = request.form.get("address")
+        city = request.form.get("city")
+        zipcode = request.form.get("zipcode")
+        paymentmethod = request.form.get("paymentMethod")
+        cardnumber = request.form.get('cardnumbet')
+        expdate = request.form.get('expdate')
+        cvv = request.form.get('cvv')
+        mpesa_number = request.form.get('mpesa_number')
+        paymentmethod = request.form.get('paypalmethod')
+        crypto_address = request.form.get('crypto_address')
+        amount = requests.form.get("amount", 1)
+
+        mongo.db.checkout_infor.insert_one(
+            {
+                "Email": email,
+                "Usernane": username,
+                "Address": address,
+                "City": city,
+                "Zipcode": zipcode,
+                "Paymentmethod": paymentmethod,
+                "Cardnumber": cardnumber,
+                "Expdate": expdate,
+                "Cvv": cvv,
+                "Mpesa": mpesa_number,
+                "Crypto_address": crypto_address
+            }
+        )
+
+        return initiate_Stk_push(mpesa_number, amount)

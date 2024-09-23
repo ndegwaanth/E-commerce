@@ -30,3 +30,23 @@ $(document).ready(function() {
         });
     });
 });
+
+
+$(document).ready(function() {
+    function toggleRequiredFields(paymentMethod) {
+        $('.payment-method input').prop('required', false); // Remove required from all
+        $('#' + paymentMethod + ' input').prop('required', true); // Add required only to the selected payment method
+    }
+
+    $('#paymentMethod').change(function() {
+        $('.payment-method').hide(); // Hide all payment methods
+        const selectedMethod = $(this).val();
+        if (selectedMethod) {
+            $('#' + selectedMethod).show(); // Show selected payment method
+            toggleRequiredFields(selectedMethod); // Update required fields
+        }
+    });
+
+    // Initially hide all payment methods
+    $('.payment-method').hide();
+});

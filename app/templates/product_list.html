@@ -74,9 +74,11 @@
                         {% endif %} -->
                         
                         <!-- Link to the product detail page with product_id -->
-                        <a href="{{ url_for('main.product_detail', product_id=image._id) }}">
-                            <img src="{{ image.url }}" class="card-img-top" alt="{{ image.name }}">
-                        </a>
+                        <div style="border: 10px 10px 10px 10px;">
+                            <a href="{{ url_for('main.product_detail', product_id=image._id) }}">
+                                <img src="{{ image.url }}" style="object-fit:cover; display: grid; width: 300px; height: 300px;" class="card-img-top" alt="{{ image.name }}">
+                            </a>
+                        </div>
                         
                         <div class="card-body">
                             {% if image.description %}
@@ -93,11 +95,8 @@
                                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <input type="number" name="quantity" value="1" min="1" required>
                                 <button type="submit" class="add-to-cart-btn btn btn-warning mt-2" data-id="{{ image._id }}" >
-                                    Add to Cart
+                                    Add to Cart <i class="fas fa-shopping-cart"></i>
                                 </button>
-                                <div class="btn btn-warning mt-2">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </div>
                             </form>
                         </div>
                     </div>

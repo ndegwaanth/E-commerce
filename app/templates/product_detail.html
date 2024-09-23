@@ -35,7 +35,6 @@
                 <p><strong>Price:</strong> ${{ image.price }}</p>
                 <p><strong>In Stock:</strong> {{ 'Yes' if image.inStock else 'No' }}</p>
                 <form action="{{ url_for('main.add_to_cart', product_id=image._id) }}" method="POST">
-                    {{ csrf_token() }}<br>
                     <input type="number" min="1" name="csrf_token" value="{{ csrf_token() }}" required>
                     <button type="submit" style="background-color: gold;">Add to Cart</button>
                 </form>
