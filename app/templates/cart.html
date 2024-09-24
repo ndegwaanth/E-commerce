@@ -8,8 +8,11 @@
 </head>
 <body>
     <h1>Your Shopping Cart</h1>
+        <form action="{{ url_for('main.reset_cart') }}" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF Token -->
+            <button>clear cart</button>
+        </form>
 
-    <!-- Display Cart Items -->
     {% if cart_items %}
         <table>
             <thead>
@@ -23,31 +26,26 @@
                 </tr>
             </thead>
             <tbody>
-                {% for image in images %}
-                    <!-- {% for item in cart %} -->
-                        <tr>
-                            <td><img src="{{ image.url }}" alt="{{ image.filename }}"></td>
-                            <td>{{ image.name }}</td>
-                            <td>{{ image.quantity }}</td>
-                            <td>{{ image.price }}</td>
-                            <td>{{ image.price * image.quantity }}</td>
-                            <!-- <td>{{ item['name'] }}</td> -->
-                            <!-- <td>{{ item['quantity'] }}</td>
-                            <td>${{ item.price }}</td>
-                            <td>${{ item.price * item['quantity'] }}</td> -->
-                            <td>
-                                <form action="{{ url_for('main.remove_from_cart', product_id=item['_id']) }}" method="POST">
-                                    <button type="submit">Remove</button>
-                                </form>
-                            </td>
-                        </tr>    
-                    <!-- {% endfor %} -->
+                {% for item in cart_items %}
+                    <tr>
+                        <td><img src="{{ item.url }}" alt="{{ item.name }}"></td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.price }}</td>  <!-- Ensure price exists -->
+                        <td>${{ item.price * item.quantity }}</td>
+                        <td>
+                            <form action="{{ url_for('main.remove_from_cart', product_id=item.product_id) }}" method="POST">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- CSRF Token -->
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
         <h2>Total Amount: ${{ total_amount }}</h2>
         <form action="{{ url_for('main.checkout') }}" method="POST">
-            <a href="{{ url_for('main.checkout') }}"><button type="submit" name="csrf_token" value="{{ csrf_token() }}">Proceed to Checkout</button></a>
+            <button type="submit" name="csrf_token" value="{{ csrf_token() }}">Proceed to Checkout</button>
         </form>
     {% else %}
         <p>Your cart is empty. <a href="{{ url_for('main.get_images', folder_name='products') }}">Continue shopping</a></p>

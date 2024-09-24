@@ -5,8 +5,7 @@ import requests.exceptions
 from .forms import Admin, RegistrationForm, LoginForm
 from gridfs import GridFS
 import os
-from . import mongo
-from app import mongo, bcrypt
+from app import mongo, bcrypt, csrf
 from app.models import User
 from bson.objectid import ObjectId
 import json
@@ -14,7 +13,7 @@ from dotenv import load_dotenv
 import requests
 import json
 import base64
-from datetime import datatime
+from datetime import datetime
 
 
 load_dotenv()
@@ -22,6 +21,12 @@ load_dotenv()
 main_bp = Blueprint('main', __name__)
 
 fs = GridFS(mongo.db)
+
+
+@main_bp.before_request
+def ensure_cart_exists():
+    if 'cart' not in session:
+        session['cart'] = [] 
 
 @main_bp.route('/')
 def index():
@@ -126,7 +131,7 @@ def upload_images():
     images_path = os.path.join(current_app.root_path, 'static/images')
 
     # Fetch all products from MongoDB
-    products = mongo.db.products.find()  # Assuming `products` collection contains product metadata
+    products = mongo.db.products.find()
 
     # Create a dictionary to quickly access product metadata by filename
     product_metadata = {}
@@ -320,124 +325,141 @@ def logout():
     return redirect(url_for('main.login'))
 
 
-# @main_bp.route('/add_to_cart/<product_id>', methods=['POST'])
-# @login_required
-# def add_to_cart(product_id):
-#     # Fetch the product from GridFS
-#     product = fs.get(ObjectId(product_id))  # Use fs.get to retrieve the GridOut object
-
-#     if not product or 'price' not in product:
-#         flash('Product not found.', 'danger')
-#         return redirect(url_for('main.get_images'))
-
-#     # Access product metadata
-#     product_metadata = product.metadata
-
-#     # Ensure the necessary fields exist in the metadata
-#     if not all(key in product_metadata for key in ['name', 'price']):
-#         flash('Product data is incomplete.', 'danger')
-#         return redirect(url_for('main.get_images', folder_name='products'))
-
-#     # Get the current cart from the session
-#     cart = session.get('cart', [])
-
-#     # Add the product to the cart
-#     cart.append({
-#         'product_id': str(product._id),  # Use the _id of the product
-#         'name': product_metadata['name'],  # Access the name from the metadata
-#         'price': product_metadata['price'],  # Access the price from the metadata
-#         'quantity': int(request.form.get('quantity', 1))  # Get the quantity from the form
-#     })
-
-#     # Save the updated cart back to the session
-#     session['cart'] = cart
-#     flash(f"{product_metadata['name']} added to cart!", 'success')
-    
-#     return redirect(url_for('main.get_images', folder_name='products'))
-
-@main_bp.route('/add_to_cart/<product_id>', methods=['POST'])
-def add_to_cart(product_id):
-    print("Received product ID:", product_id)
-
+@main_bp.route('/add_to_cart', methods=['POST'])
+@csrf.exempt
+def add_to_cart():
     try:
-        # Fetch the product from GridFS
-        grid_out = fs.get(ObjectId(product_id))
-        print("Fetched product:", grid_out)
+        data = request.get_json()
+        print('Received data', data)
+        product_id = data.get('product_id')
+        quantity = int(data.get('quantity', 1))
 
-        # Access the 'description' field directly (as a string)
-        product_description = grid_out.description
-        print("Product Description:", product_description)
+        # Fetch the product from MongoDB using product_id
+        product = fs.find_one({'_id': ObjectId(product_id)})
 
-        # Parse the 'description' field (it's a JSON string)
-        product_details = json.loads(product_description)
-        print("Parsed product details:", product_details)
+        if not product:
+            return jsonify({'message': 'Product not found'}), 404
 
-        # Ensure the product has a 'price'
-        if 'price' not in product_details:
-            return "Product is missing price", 400
+        # Load the description from the metadata field
+        description_data = json.loads(product.description)
+        
+        # Extract necessary fields from the description
+        product_name = description_data.get('name', 'No name available')
+        product_price = description_data.get('price', 0.0)
 
-        # Get the current cart from the session
+        # Get the cart from session, or initialize it if empty
         cart = session.get('cart', [])
 
-        # Check if the product is already in the cart and update its quantity
+        # Check if the product is already in the cart
+        found = False
         for item in cart:
-            if item['_id'] == product_id:  # Use product_id as the identifier
-                item['quantity'] += int(request.form.get('quantity', 1))
+            if item['product_id'] == product_id:
+                item['quantity'] += quantity
+                found = True
                 break
-        else:
-            # If the product is not already in the cart, add it
-            cart.append({
-                '_id': product_id,  # Use the product_id from the URL/GridFS
-                'name': product_details['name'],
-                'price': product_details['price'],  # Add the parsed price
-                'quantity': int(request.form.get('quantity', 1))
+
+        # If product is not in the cart, add it
+        if not found:
+            session['cart'].append({
+                'product_id': product_id,
+                'name': product_name,
+                'price': product_price,
+                'quantity': quantity,
+                'url': url_for('main.static_image', filename=product.filename)
             })
 
-        # Update the cart in the session
+        # Update the session cart
         session['cart'] = cart
+        session.modified = True
 
-        return "Product added to cart", 200
+        return jsonify({'message': 'Product added', 'cart_count': len(cart)}), 200
 
     except Exception as e:
-        print("Error:", e)
-        return "An error occurred", 500
+        return jsonify({'message': f'Error: {str(e)}'}), 400
 
+from bson.objectid import ObjectId
 
 @main_bp.route('/cart')
 @login_required
 def view_cart():
-    # Get the cart from the session or an empty list if the cart is not present
     cart = session.get('cart', [])
+    total_price = 0
 
-    # Safeguard: use get() method to ensure that if 'price' or 'quantity' is missing, it defaults to 0
-    total_price = sum(item.get('price', 0) * item.get('quantity', 0) for item in cart)
+    for item in cart:
+        product_id = item['product_id']
+        
+        # Fetch the product from MongoDB using ObjectId
+        product = mongo.db.user.find_one({"_id": ObjectId(product_id)})
 
-    # Render the cart template with cart items and total amount
+        # Set the item price based on the product retrieved or use default of 10
+        item_price = product['price'] if product and 'price' in product else 10  # Default price of 10
+        item['price'] = item_price  # Set price for rendering
+        total_price += item_price * item['quantity']
+
     return render_template('cart.html', cart_items=cart, total_amount=total_price)
-
-
-# Route to clear the cart
-@main_bp.route('/clear_cart')
-@login_required
-def clear_cart():
-    session.pop('cart', None)
-    flash('Cart cleared!', 'success')
-    return redirect(url_for('main.view_cart'))
 
 @main_bp.route('/remove_from_cart/<product_id>', methods=['POST'])
 @login_required
 def remove_from_cart(product_id):
+    # Get the cart from the session
     cart = session.get('cart', [])
-    cart = [item for item in cart if item['product_id'] != product_id]  # Remove item by product_id
-    session['cart'] = cart
-    flash('Item removed from cart!', 'success')
+    
+    # Filter out the item with the given product_id
+    updated_cart = [item for item in cart if item['product_id'] != product_id]
+    
+    # Update the session cart
+    session['cart'] = updated_cart
+    
+    # Redirect back to the cart page
     return redirect(url_for('main.view_cart'))
+
+
+@main_bp.route('/reset_cart', methods=['POST'])
+def reset_cart():
+    session.pop('cart', None)
+    flash('Your cart has been reset.')
+    return redirect(url_for('main.view_cart'))
+
 
 @main_bp.route('/checkout', methods=['POST'])
 @login_required
 def checkout():
-    return render_template('checkout.html')
+    cart = session.get('cart', [])
+    total_amount = sum(item.get('price', 10) * item['quantity'] for item in cart)
+    
+    if request.method == "POST":
+        email = request.form.get("email")
+        username = request.form.get("username")
+        address = request.form.get("address")
+        city = request.form.get("city")
+        zipcode = request.form.get("zipcode")
+        paymentmethod = request.form.get("paymentMethod")
+        cardnumber = request.form.get('cardnumber')
+        expdate = request.form.get('expdate')
+        cvv = request.form.get('cvv')
+        mpesa_number = request.form.get('mpesa_number')
+        paymentmethod = request.form.get('paypalmethod')
+        crypto_address = request.form.get('crypto_address')
+        amount = request.form.get("amount", 1)
 
+        mongo.db.checkout_infor.insert_one(
+            {
+                "Email": email,
+                "Usernane": username,
+                "Address": address,
+                "City": city,
+                "Zipcode": zipcode,
+                "Paymentmethod": paymentmethod,
+                "Cardnumber": cardnumber,
+                "Expdate": expdate,
+                "Cvv": cvv,
+                "Mpesa": mpesa_number,
+                "Crypto_address": crypto_address,
+                "Amount": amount
+            }
+        )
+
+    return render_template('checkout.html', cart=cart, total_amoun=total_amount)
 
 
 def get_access_token():
@@ -448,11 +470,11 @@ def get_access_token():
     auth = base64.b64encode(f"{consumer_key}: {consumer_secret}".encode()).decode()
 
     headers = {
-        "Authorizarion": f"Basic {auth}"
+        "Authorization": f"Basic {auth}"
     }
 
     try:
-        response = request.get(api_url, headers=headers)
+        response = requests.get(api_url, headers=headers)
         response.raise_for_status()
         return response.json().get("access_token")
     except requests.exceptions.RequestException as e:
@@ -464,10 +486,10 @@ def initiate_Stk_push(phone, amount):
         return jsonify(access_token), 500
     
     passkey = ""
-    bussiness_short_code = ""
+    bussiness_short_code = "174379"
     process_request_url = ""
-    callback_url = ""
-    timestamp = datatime.now.string().strftime('%Y%m%d%H%M%S')
+    callback_url = "https://donplackerr.tech/success"
+    timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
     password = base64.b64encode((bussiness_short_code + passkey + timestamp).encode()).decode()
 
     stk_push_headers = {
@@ -488,7 +510,6 @@ def initiate_Stk_push(phone, amount):
         "AccountReference": "TONY OPEN SOURCE",
         "TransactionDesc": "STK Push payment"
     }
-
     try:
         response = requests.post(process_request_url, headers=stk_push_headers, json=stk_push_payload)
         response.raise_for_status()
@@ -507,37 +528,9 @@ def initiate_Stk_push(phone, amount):
     except requests.exceptions.RequestException as e:
         return jsonify({"error": str(e)}), 500
 
-@main_bp.route('/confirm', methods=["POST"])
+@main_bp.route('/success', methods=["POST"])
+@login_required
 def confirm():
-    if request.method == "POST":
-        email = request.form.get("email")
-        username = request.form.get("username")
-        address = request.form.get("address")
-        city = request.form.get("city")
-        zipcode = request.form.get("zipcode")
-        paymentmethod = request.form.get("paymentMethod")
-        cardnumber = request.form.get('cardnumbet')
-        expdate = request.form.get('expdate')
-        cvv = request.form.get('cvv')
-        mpesa_number = request.form.get('mpesa_number')
-        paymentmethod = request.form.get('paypalmethod')
-        crypto_address = request.form.get('crypto_address')
-        amount = requests.form.get("amount", 1)
-
-        mongo.db.checkout_infor.insert_one(
-            {
-                "Email": email,
-                "Usernane": username,
-                "Address": address,
-                "City": city,
-                "Zipcode": zipcode,
-                "Paymentmethod": paymentmethod,
-                "Cardnumber": cardnumber,
-                "Expdate": expdate,
-                "Cvv": cvv,
-                "Mpesa": mpesa_number,
-                "Crypto_address": crypto_address
-            }
-        )
-
-        return initiate_Stk_push(mpesa_number, amount)
+    mpesa_number = request.form.get('mpesa_number')
+    amount = request.form.get('amount', 1)
+    return initiate_Stk_push(mpesa_number, amount)

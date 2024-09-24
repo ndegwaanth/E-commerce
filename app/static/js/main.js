@@ -19,7 +19,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/add_to_cart/' + productId,
             method: 'POST',
-            data: { quantity: 1 },  // You can make this dynamic if you want users to input quantity
+            data: { quantity: 1 },
             success: function(response) {
                 // Update the cart count in the header
                 $('#cart-count').text(response.cart_count);
@@ -29,24 +29,4 @@ $(document).ready(function() {
             }
         });
     });
-});
-
-
-$(document).ready(function() {
-    function toggleRequiredFields(paymentMethod) {
-        $('.payment-method input').prop('required', false); // Remove required from all
-        $('#' + paymentMethod + ' input').prop('required', true); // Add required only to the selected payment method
-    }
-
-    $('#paymentMethod').change(function() {
-        $('.payment-method').hide(); // Hide all payment methods
-        const selectedMethod = $(this).val();
-        if (selectedMethod) {
-            $('#' + selectedMethod).show(); // Show selected payment method
-            toggleRequiredFields(selectedMethod); // Update required fields
-        }
-    });
-
-    // Initially hide all payment methods
-    $('.payment-method').hide();
 });

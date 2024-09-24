@@ -113,22 +113,11 @@
         </ul>
         <h4 class="text-right">Total: ${{ total_amount }}</h4>
 
-        <button type="submit" class="btn btn-success btn-block mt-4">Complete Purchase</button>
+        <button type="submit" onclick="url_for('confirm')" class="btn btn-success btn-block mt-4">Complete Purchase</button>
     </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#paymentMethod').change(function() {
-            $('.payment-method').hide(); // Hide all payment methods
-            const selectedMethod = $(this).val();
-            if (selectedMethod) {
-                $('#' + selectedMethod).show(); // Show selected payment method
-            }
-        });
-    });
-</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
